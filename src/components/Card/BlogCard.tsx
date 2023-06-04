@@ -4,7 +4,6 @@ import React, { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { truncateDescription } from "@/utils/format";
-import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 
 const BlogCard: FC<BlogQueryData> = ({
   title,

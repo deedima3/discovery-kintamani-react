@@ -37,14 +37,17 @@ export function useQuerySearchPaginated<QueryReturn>({
       if (successFn) {
         successFn(value);
       }
-      setHasNextPage(value.meta.hasNextPage);
-      setHasPrevPage(value.meta.hasPreviousPage);
-      setMaxPage(value.meta.pageSize);
+      if (value.meta) {
+        setHasNextPage(value.meta.hasNextPage);
+        setHasPrevPage(value.meta.hasPreviousPage);
+        setMaxPage(value.meta.pageSize);
+      }
     },
     onError: (error: Error) => {
       if (errorFn) {
         errorFn(error);
       }
+      console.log(error);
     },
   });
 

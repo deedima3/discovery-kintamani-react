@@ -6,10 +6,10 @@ import BlogCard from "@/components/Card/BlogCard";
 import NormalLayout from "@/components/Layout/NormalLayout";
 import CustomPagination from "@/components/Pagination/CustomPagination";
 import SearchBar from "@/components/Search/SearchBar";
+import BlogCardSkeleton from "@/components/Skeleton/BlogCardSkeleton";
 import SearchPageTitle from "@/components/Title/SearchPageTitle";
 import { useQuerySearchPaginated } from "@/hooks/useQuerySearchPaginated";
 import { BlogQueryData } from "@/interfaces/data.interfaces";
-import { PaginatedDataWithMeta } from "@/interfaces/graphcms.interfaces";
 import React, { ReactElement, useState } from "react";
 
 const Blog = () => {
@@ -23,8 +23,8 @@ const Blog = () => {
   const [search, setSearch] = useState<string>("");
 
   const {
-    query: { data, isLoading, isError },
-    pagination: { hasNextPage, hasPrevPage, currentPage, maxPage, setPage },
+    query: { data, isLoading },
+    pagination: { currentPage, maxPage, setPage },
   } = useQuerySearchPaginated<BlogQueryData[]>({
     queryFn: getAllBlogPaginated,
     key: ["getAllPaginatedBlog"],
@@ -44,13 +44,20 @@ const Blog = () => {
           placeholder={"Search Blog"}
         />
       </SearchPageTitle>
-      {data && !isLoading && (
-        <div className="flex flex-wrap w-full gap-2">
-          {data.data.map((blogData, index) => {
-            return <BlogCard {...blogData} key={index} />;
-          })}
-        </div>
-      )}
+      <div className="flex flex-wrap justify-between w-full">
+        {isLoading ? (
+          <>
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+          </>
+        ) : (
+          data &&
+          data.data.map((blogData) => {
+            return <BlogCard {...blogData} key={blogData.slug} />;
+          })
+        )}
+      </div>
       <div className="flex justify-center w-full">
         <CustomPagination
           maxPage={maxPage}
