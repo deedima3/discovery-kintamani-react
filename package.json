@@ -1,0 +1,36 @@
+{
+  "name": "discovery-kintamani-react",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fontsource/hauora-sans": "^5.0.2",
+    "@fontsource/poppins": "^5.0.2",
+    "@fontsource/quicksand": "^5.0.2",
+    "@heroicons/react": "^2.0.18",
+    "@types/node": "20.2.5",
+    "@types/react": "18.2.8",
+    "@types/react-dom": "18.2.4",
+    "aos": "^2.3.4",
+    "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "eslint": "8.42.0",
+    "eslint-config-next": "13.4.4",
+    "framer-motion": "^10.12.16",
+    "graphql": "^16.6.0",
+    "graphql-request": "^6.1.0",
+    "next": "13.4.4",
+    "postcss": "8.4.24",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-leaflet": "^4.2.1",
+    "react-query": "^3.39.3",
+    "tailwindcss": "3.3.2",
+    "typescript": "5.1.3"
+  }
+}
