@@ -64,6 +64,37 @@ const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
   } as unknown as PaginatedDataWithMeta<DestinationQueryData[]>;
 };
 
+const getDestinationById = async (slug: string) => {
+  const query = gql`
+    query GetDestinationById($slug: String) {
+      destination(where: { slug: $slug }) {
+        images {
+          ... on Image {
+            image {
+              url
+            }
+          }
+        }
+        title
+        location
+        openTime
+        closeTime
+        alwaysOpen
+        description {
+          markdown
+        }
+        coordinate {
+          latitude
+          longitude
+        }
+      }
+    }
+  `;
+
+  const data = await graphQLClient.request(query, { slug: slug });
+  console.log(data);
+};
+
 const destinationQueries = {
   getAllDestinationPaginated,
 };
