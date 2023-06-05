@@ -17,7 +17,7 @@ const breadCrumbsData = [
     isBold: true,
   },
 ];
-const Map = dynamic(() => import("@components/Map/map"), { ssr: false });
+const Map = dynamic(() => import("@/components/Map/map"), { ssr: false });
 const InteractiveMapPage = () => {
   return (
     <div className="w-full bg-white">

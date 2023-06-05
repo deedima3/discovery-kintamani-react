@@ -1,4 +1,4 @@
-import redMarker from "@components/Map/marker";
+import redMarker from "@/components/Map/marker";
 
 export const mapLegendData = [
   {
