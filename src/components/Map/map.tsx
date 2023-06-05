@@ -29,11 +29,13 @@ const InteractiveMap = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   return (
     <div className="relative w-full h-full font-poppins">
-      <div className="ml-20 mt-10 absolute top-0 left-0 font-poppins">
-        <MapLegendDropdown
-          isOpen={isDropdownOpen}
-          setIsDropdownOpen={setIsDropdownOpen}
-        />
+      <div className="container relative mx-auto top-10">
+        <div className="absolute top-0 left-0 font-poppins">
+          <MapLegendDropdown
+            isOpen={isDropdownOpen}
+            setIsDropdownOpen={setIsDropdownOpen}
+          />
+        </div>
       </div>
       <MapContainer
         attributionControl={false}
