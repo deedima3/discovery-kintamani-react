@@ -80,6 +80,9 @@ dependencies:
   react-html-parser:
     specifier: ^2.0.2
     version: 2.0.2(react@18.2.0)
+  react-icons:
+    specifier: ^4.9.0
+    version: 4.9.0(react@18.2.0)
   react-leaflet:
     specifier: ^4.2.1
     version: 4.2.1(leaflet@1.9.4)(react-dom@18.2.0)(react@18.2.0)
@@ -2678,6 +2681,14 @@ packages:
       react: ^0.14.0 || ^15.0.0 || ^16.0.0-0
     dependencies:
       htmlparser2: 3.10.1
+      react: 18.2.0
+    dev: false
+
+  /react-icons@4.9.0(react@18.2.0):
+    resolution: {integrity: sha512-ijUnFr//ycebOqujtqtV9PFS7JjhWg0QU6ykURVHuL4cbofvRCf3f6GMn9+fBktEFQOIVZnuAYLZdiyadRQRFg==}
+    peerDependencies:
+      react: '*'
+    dependencies:
       react: 18.2.0
     dev: false
 
