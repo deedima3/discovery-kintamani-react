@@ -46,7 +46,7 @@ const Footer = () => {
           width={160}
           height={100}
           alt="white-logo"
-          className="opacity-40"
+          className="opacity-30"
         />
       </div>
     </div>
