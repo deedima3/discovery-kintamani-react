@@ -3,6 +3,7 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import DestinationCard from "@/components/Card/DestinationCard";
 import NormalLayout from "@/components/Layout/NormalLayout";
 import CustomPagination from "@/components/Pagination/CustomPagination";
+import { PageSEO } from "@/components/SEO/CommonSEO";
 import SearchBar from "@/components/Search/SearchBar";
 import BlogCardSkeleton from "@/components/Skeleton/BlogCardSkeleton";
 import { useQuerySearchPaginated } from "@/hooks/useQuerySearchPaginated";
@@ -42,7 +43,7 @@ const DestinationIndexPage = () => {
       <div className="flex flex-row items-center justify-between">
         <div>
           <h1 className="font-bold text-[40px] font-quicksand">
-            The Traveler`&apos;`s Handbook
+            The Traveler`s Handbook
           </h1>
           <p className="text-2xl opacity-50">
             Essential Destination Information for Adventurous Explorers
@@ -83,7 +84,12 @@ const DestinationIndexPage = () => {
 };
 
 DestinationIndexPage.getLayout = function getLayout(page: React.ReactNode) {
-  return <NormalLayout pageTitle="Destination">{page}</NormalLayout>;
+  return (
+    <>
+      <PageSEO title="Destinations | Discover a whole new travel destinations" />
+      <NormalLayout pageTitle="Destination">{page}</NormalLayout>
+    </>
+  );
 };
 
 export default DestinationIndexPage;

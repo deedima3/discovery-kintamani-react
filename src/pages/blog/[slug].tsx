@@ -19,6 +19,7 @@ import UnborderedLayout from "@/components/Layout/UnborderedLayout";
 import SocialMediaShare from "@/components/Section/SocialMediaShare";
 import { useRouter } from "next/router";
 import BlogCard from "@/components/Card/BlogCard";
+import { PageSEO } from "@/components/SEO/CommonSEO";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   let data;
@@ -75,49 +76,52 @@ const BlogDetail = ({ data, otherBlog }: BlogDetailApi) => {
   const { pathname } = useRouter();
 
   return (
-    <div className="flex flex-col mt-24">
-      <div className="w-full px-2 mx-auto max-w-screen-2xl">
-        <Breadcrumb breadcrumbArray={breadcrumbs} />
-      </div>
-      <article className="flex flex-col w-full gap-2">
-        <section aria-label="blog-section" className="flex flex-col w-full">
-          <div className="w-full px-2 mx-auto max-w-screen-2xl">
-            <BlogDetailTitle
-              title={data.title}
-              subtitle={data.subtitle}
-              publishTime={data.updatedAt}
+    <>
+      <PageSEO title={data.title} />
+      <div className="flex flex-col mt-24">
+        <div className="w-full px-2 mx-auto max-w-screen-2xl">
+          <Breadcrumb breadcrumbArray={breadcrumbs} />
+        </div>
+        <article className="flex flex-col w-full gap-2">
+          <section aria-label="blog-section" className="flex flex-col w-full">
+            <div className="w-full px-2 mx-auto max-w-screen-2xl">
+              <BlogDetailTitle
+                title={data.title}
+                subtitle={data.subtitle}
+                publishTime={data.updatedAt}
+              />
+            </div>
+            <div className="mt-5">
+              <FullScreenBlogImage image={data.image} />
+            </div>
+            <div className="flex flex-col w-full max-w-screen-xl gap-2 px-2 mx-auto mt-5 text-sm break-words md:text-lg font-poppin htmlparser">
+              {ReactHtmlParser(data.description.html)}
+            </div>
+          </section>
+          <section
+            aria-label="share-section"
+            className="w-full max-w-screen-xl px-2 mx-auto"
+          >
+            <SocialMediaShare
+              url={`${process.env.NEXT_PUBLIC_ORIGIN}${pathname}`}
             />
-          </div>
-          <div className="mt-5">
-            <FullScreenBlogImage image={data.image} />
-          </div>
-          <div className="flex flex-col w-full max-w-screen-xl gap-2 px-2 mx-auto mt-5 text-sm break-words md:text-lg font-poppin htmlparser">
-            {ReactHtmlParser(data.description.html)}
-          </div>
-        </section>
-        <section
-          aria-label="share-section"
-          className="w-full max-w-screen-xl px-2 mx-auto"
-        >
-          <SocialMediaShare
-            url={`${process.env.NEXT_PUBLIC_ORIGIN}${pathname}`}
-          />
-        </section>
-        <section
-          aria-label="other-blog-post"
-          className="w-full max-w-screen-xl px-2 mx-auto mt-10"
-        >
-          <h3 className="text-2xl font-bold md:text-4xl font-quicksand">
-            You may also like
-          </h3>
-          <div className="flex flex-wrap justify-center w-full gap-2 mt-10 lg:justify-between">
-            {otherBlog.map((blogData) => {
-              return <BlogCard {...blogData} key={blogData.slug} />;
-            })}
-          </div>
-        </section>
-      </article>
-    </div>
+          </section>
+          <section
+            aria-label="other-blog-post"
+            className="w-full max-w-screen-xl px-2 mx-auto mt-10"
+          >
+            <h3 className="text-2xl font-bold md:text-4xl font-quicksand">
+              You may also like
+            </h3>
+            <div className="flex flex-wrap justify-center w-full gap-2 mt-10 lg:justify-between">
+              {otherBlog.map((blogData) => {
+                return <BlogCard {...blogData} key={blogData.slug} />;
+              })}
+            </div>
+          </section>
+        </article>
+      </div>
+    </>
   );
 };
 

@@ -16,6 +16,8 @@ const BlogSidebarCard = ({ image, slug, title }: FeaturedBlogData) => {
           priority
           // className="object-cover"
           style={{ objectFit: "cover" }}
+          placeholder="blur"
+          blurDataURL="https://placehold.co/600x400.png"
           fill
         />
       </div>

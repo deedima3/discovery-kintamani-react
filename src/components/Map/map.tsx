@@ -107,6 +107,8 @@ const InteractiveMap = ({ destinations }: any) => {
                         src={images.image.url}
                         alt={images.alt}
                         style={{ objectFit: "cover" }}
+                        placeholder="blur"
+                        blurDataURL="https://placehold.co/600x400.png"
                         fill
                       />
                     </div>
