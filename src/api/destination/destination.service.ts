@@ -4,6 +4,7 @@ import {
   Destination,
   DestinationResponse,
   DestinationData,
+  MapMetadataWrapper,
 } from "@/interfaces/data.interfaces";
 import {
   ApiDataResponse,
@@ -14,6 +15,47 @@ import {
 } from "@/interfaces/graphcms.interfaces";
 import { graphQLClient } from "@/utils/query";
 import { gql } from "graphql-request";
+
+export const getDestinations = async () => {
+  const query = gql`
+    query MyQuery {
+      destinations(where: { isFeatured: true }) {
+        alwaysOpen
+        category
+        closeTime
+        coordinate {
+          latitude
+          longitude
+        }
+        id
+        images {
+          ... on Image {
+            id
+            alt
+            image {
+              width
+              url
+              height
+            }
+          }
+        }
+        isFeatured
+        location
+        openTime
+        publishedAt
+        shortDescription
+        slug
+        stage
+        title
+      }
+    }
+  `;
+  const data: ApiDataResponse<MapMetadataWrapper<DestinationData[]>> =
+    await graphQLClient.request(query);
+  return {
+    destinations: data.destinations,
+  } as unknown as MapMetadataWrapper<DestinationData[]>;
+};
 
 const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
   const query = gql`
@@ -32,7 +74,7 @@ const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
                   height
                   url(
                     transformation: {
-                      image: { resize: { width: 500, height: 500 } }
+                      image: { resize: { width: 1000, height: 1000 } }
                     }
                   )
                   width

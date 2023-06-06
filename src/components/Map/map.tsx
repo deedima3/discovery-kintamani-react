@@ -45,7 +45,7 @@ const InteractiveMap = ({ destinations }: any) => {
   return (
     <div className="relative w-full h-full font-poppins">
       <div className="container relative mx-auto top-10">
-        <div className="absolute top-0 left-0 font-poppins">
+        <div className="absolute top-0 left-0 font-poppins ml-2 lg:ml-0">
           <MapLegendDropdown
             isOpen={isDropdownOpen}
             setIsDropdownOpen={setIsDropdownOpen}
@@ -102,7 +102,7 @@ const InteractiveMap = ({ destinations }: any) => {
                     className="grid grid-flow-col place-items-center gap-4"
                     key={idx}
                   >
-                    <div className="w-[100px] h-[100px] rounded-[10px] relative overflow-hidden block">
+                    <div className="md:w-[100px] md:h-[100px] w-[50px] h-[50px] rounded-[10px] relative overflow-hidden block">
                       <Image
                         src={images.image.url}
                         alt={images.alt}
@@ -112,15 +112,17 @@ const InteractiveMap = ({ destinations }: any) => {
                         fill
                       />
                     </div>
-                    <div className="w-fit h-fit flex flex-col space-y-[20px]">
-                      <p className="text-2xl font-bold w-full break-words m-0 block leading-none">
+                    <div className="w-fit h-fit flex flex-col space-y-[10px] md:space-y-[20px]">
+                      <p className="text-lg md:text-2xl font-bold w-full break-words m-0 block leading-none">
                         {title}
                       </p>
                       <div className="flex flex-row space-x-2 items-center">
                         <div className="text-white bg-black w-fit h-auto rounded-full p-[0.2rem]">
                           <HiOutlineMap size={16} />
                         </div>
-                        <p className="text-sm m-0 block">{location}</p>
+                        <p className="md:text-sm text-[10px] m-0 block">
+                          {location}
+                        </p>
                       </div>
                     </div>
                   </div>

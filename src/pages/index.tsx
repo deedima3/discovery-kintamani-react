@@ -1,124 +1,207 @@
+import NormalLayout from "@/components/Layout/NormalLayout";
 import Image from "next/image";
-import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
 
-export default function Home() {
+import {
+  HiOutlineGlobeAmericas,
+  HiOutlineCamera,
+  HiOutlineMap,
+} from "react-icons/hi2";
+import { GiBinoculars, GiGreekTemple, GiHourglass } from "react-icons/gi";
+
+import { useQuery } from "@tanstack/react-query";
+import { getDestinations } from "@/api/destination/destination.service";
+import dynamic from "next/dynamic";
+import { PageSEO } from "@/components/SEO/CommonSEO";
+import { CATEGORY_VALUE } from "@/utils/constant";
+import { DestinationData } from "@/interfaces/data.interfaces";
+
+const Map = dynamic(() => import("@/components/Map/oddysey"), { ssr: false });
+
+const Home = () => {
+  const { data, isLoading } = useQuery(["destinations"], getDestinations);
+  if (isLoading) {
+    return null;
+  }
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
+    <div className="bg-white text-stone-800">
+      <section className="h-screen w-full pt-36 lg:pt-0 flex flex-col sm:flex-row gap-10 md:gap-0">
+        <div className="w-full sm:w-1/2 flex flex-col justify-center gap-5">
+          <h1 className="text-5xl text-stone-800 font-quicksand font-semibold leading-[58px]">
+            Exploring Bali's <br /> Highland Treasures
+          </h1>
+          <p className="text-xl text-gray-400 font-light pr-14">
+            Discover the Enchanting Secrets of Kintamani
+          </p>
+        </div>
+        <div className="h-full w-full sm:w-1/2 flex sm:items-center justify-end">
+          <div className="w-full sm:w-[650px] h-full sm:h-[300px] md:h-[400px]">
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
+              src={data?.destinations[7].images.image.url}
+              width={data?.destinations[7].images?.image?.width}
+              height={data?.destinations[7].images?.image?.height}
+              style={{ height: "100%", width: "100%", objectFit: "cover" }}
+              className="sm:rounded-l-3xl xl:rounded-3xl bg-stone-300"
+              alt={"Headers"}
               priority
             />
-          </a>
+          </div>
         </div>
-      </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+        <div className="arrow">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </section>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Find in-depth information about Next.js features and API.
+      <section className="w-full flex flex-col gap-12 pb-12 mt-20">
+        <div className="text-center">
+          <h1 className="text-4xl font-quicksand font-semibold mb-2.5">
+            Destination Treasures
+          </h1>
+          <p className="text-xl text-gray-400 font-light">
+            Showcasing the Spectacular Highlighted Destinations That Define
+            Adventure
           </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+        </div>
+        <Swiper
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            640: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 2.7,
+            },
+          }}
+          freeMode={true}
+          spaceBetween={30}
+          modules={[FreeMode]}
+          className="mySwiper w-full cursor-pointer"
         >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+          {data?.destinations.map((destinationData: DestinationData, key) => (
+            <SwiperSlide className="flex flex-col" key={key}>
+              <div className="w-full h-72 mb-2">
+                <Image
+                  src={destinationData?.images?.image?.url}
+                  width={destinationData?.images?.image?.width}
+                  height={destinationData?.images?.image?.height}
+                  style={{ height: "100%", width: "100%", objectFit: "cover" }}
+                  alt={destinationData?.images?.alt}
+                  className="rounded-2xl bg-stone-300"
+                />{" "}
+              </div>
+              <div className="flex gap-3">
+                <div className="flex gap-2">
+                  <HiOutlineMap className="bg-black rounded-3xl text-white p-1 text-2xl" />{" "}
+                  {destinationData?.location}
+                </div>{" "}
+                <div className="flex gap-2">
+                  {destinationData?.category == "religious" ? (
+                    <GiGreekTemple className=" bg-gradient-to-tl from-blue-800 to-purple-500 rounded-xl p-1 text-2xl text-white " />
+                  ) : destinationData.category == "tourism" ? (
+                    <GiBinoculars className="bg-gradient-to-tr from-blue-700 to-sky-400 rounded-xl p-1 text-2xl text-white " />
+                  ) : (
+                    destinationData.category == "history" && (
+                      <GiHourglass className="bg-gradient-to-tr from-purple-400 to-red-400 rounded-xl p-1 text-2xl text-white " />
+                    )
+                  )}
+                  {CATEGORY_VALUE[destinationData?.category]}
+                </div>
+              </div>
+              <h2 className=" text-2xl font-bold font-quicksand">
+                {destinationData?.title}
+              </h2>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
+      <section className="w-full flex flex-col sm:flex-row items-center mt-20 gap-6 sm:gap-0">
+        <div className="w-full sm:w-1/2 h-[45vh] sm:h-[509px]">
+          <div className="w-full sm:w-11/12 h-full bg-stone-300 sm:rounded-r-2xl lg:rounded-2xl overflow-hidden">
+            <Map />
+          </div>
+        </div>
+        <div className="sm:pl-20 lg:pl-32 sm:w-1/2 text-center sm:text-left">
+          <h1 className="w-full text-3xl font-quicksand font-bold mb-5">
+            Interactive Map Odyssey
+          </h1>
+          <p className="text-xl text-gray-400 font-ligh mb-10">
+            Unleash Your Inner Explorer and Chart <br /> Your Perfect Travel
+            Path
           </p>
-        </a>
+          <button className="bg-black rounded-lg">
+            {" "}
+            <div className="flex items-center link-active py-4 px-5 gap-2 text-2xl">
+              <HiOutlineGlobeAmericas className="text-[#FD900C]" /> Navigate Me
+            </div>{" "}
+          </button>
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+      <section className="w-full py-28 flex flex-col gap-12">
+        <div className="text-center">
+          <h1 className="text-4xl font-quicksand font-semibold mb-2.5">
+            Visual Delights of Kintamani
+          </h1>
+          <p className="text-xl text-gray-400 font-light">
+            Gallery Showcasing the Magnificent Landscapes and Cultural Richness
           </p>
-        </a>
-      </div>
-    </main>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div
+            className="col-span-2 h-72 bg-gray-400 rounded-xl bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${
+                data != null && data.destinations[4].images?.image?.url
+              })`,
+            }}
+          >
+            <div className="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl p-5 flex items-end text-white font-light text-sm">
+              <div className="flex items-center gap-2">
+                <HiOutlineCamera className="text-base" /> Photo by Admin
+              </div>
+            </div>
+          </div>
+
+          {data?.destinations.slice(0, 4).map((dataDestination, key) => (
+            <div
+              className="col-span-2 sm:col-span-1 h-72 bg-gray-400 rounded-xl bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${dataDestination?.images?.image?.url})`,
+              }}
+              key={key}
+            >
+              <div className="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl p-5 flex items-end text-white font-light text-sm ">
+                <div className="flex items-center gap-2">
+                  <HiOutlineCamera className="text-base" /> Photo by Admin
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
   );
-}
+};
+
+Home.getLayout = function getLayout(page: React.ReactNode) {
+  return (
+    <>
+      <PageSEO />
+      <NormalLayout pageTitle="Home">{page}</NormalLayout>
+    </>
+  );
+};
+
+export default Home;

@@ -37,15 +37,15 @@ const DestinationIndexPage = () => {
 
   return (
     <div className="w-full h-full text-black bg-white font-poppins">
-      <div className="container mx-auto bg-white py-14">
+      <div className="container mx-auto bg-white py-6 md:py-10 lg:py-14">
         <Breadcrumb breadcrumbArray={breadCrumbsData} />
       </div>
-      <div className="flex flex-row items-center justify-between">
-        <div>
-          <h1 className="font-bold text-[40px] font-quicksand">
+      <div className="flex flex-col  md:flex-row md:items-center md:justify-between">
+        <div className="mb-2 md:mb-0">
+          <h1 className="font-bold text-3xl md:text-4xl lg:text-[40px] font-quicksand">
             The Traveler`s Handbook
           </h1>
-          <p className="text-2xl opacity-50">
+          <p className="text-base lg:text-2xl opacity-50">
             Essential Destination Information for Adventurous Explorers
           </p>
         </div>
@@ -55,7 +55,7 @@ const DestinationIndexPage = () => {
           placeholder="Search destination"
         />
       </div>
-      <div className="grid grid-cols-3 place-items-center gap-5 gap-y-12 mt-[100px] mb-[50px]">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 place-items-center md:gap-5 md:gap-y-12 gap-y-4 mt-10 lg:mt-[100px] mb-[50px]">
         {isLoading ? (
           <>
             <BlogCardSkeleton />

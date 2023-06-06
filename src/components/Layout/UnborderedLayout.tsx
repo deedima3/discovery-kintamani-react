@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { FC } from "react";
 
 // TODO : Add Navbar and Footer

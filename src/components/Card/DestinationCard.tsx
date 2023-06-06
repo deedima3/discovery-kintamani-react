@@ -35,14 +35,14 @@ const DestinationCard: FC<DestinationQueryData> = ({
           // blurDataURL=""
         />
       </AspectRatio.Root>
-      <h5 className="text-[28px] font-semibold font-poppins mt-5">{title}</h5>
+      <h5 className="text-base md:text-[28px] font-semibold font-poppins mt-5">
+        {title}
+      </h5>
 
-      <p className="w-full mt-2 text-black font-poppins text-lg opacity-40">
+      <p className="w-full mt-2 text-black font-poppins text-sm md:text-base opacity-40">
         {truncateDescription(shortDescription)}
       </p>
-      <div className="flex font-bold text-transparent from-brand-gradient-top to-brand-gradient-down bg-gradient-to-br bg-clip-text">
-        <p>Read More &#8594;</p>
-      </div>
+      <p className="text-sm md:text-base">Read More &#8594;</p>
     </Link>
   );
 };
