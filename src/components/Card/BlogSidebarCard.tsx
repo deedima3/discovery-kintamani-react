@@ -11,7 +11,9 @@ const BlogSidebarCard = ({ image, slug, title }: FeaturedBlogData) => {
           src={image.image.url}
           // width={image.image.width}
           // height={image.image.height}
-          alt={image.alt}
+          alt={image.alt ? image.alt : "image"}
+          sizes="100%"
+          priority
           // className="object-cover"
           style={{ objectFit: "cover" }}
           fill

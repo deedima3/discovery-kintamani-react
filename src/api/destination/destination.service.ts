@@ -62,7 +62,6 @@ const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
   )) as ApiDataResponse<
     ApiPaginatedResponse<ApiNodeResponse<DestinationQueryData>[]>
   >;
-  console.log(destinationsConnection);
   return {
     data: destinationsConnection.edges.map((destinationData) => {
       return destinationData.node;

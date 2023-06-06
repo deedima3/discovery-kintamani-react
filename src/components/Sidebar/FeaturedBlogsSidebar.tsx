@@ -12,7 +12,7 @@ const FeaturedBlogsSidebar = ({ blogs }: ComponentProps) => {
       </h5>
       <div className="flex flex-col space-y-[2rem]">
         {blogs.map((value, idx) => (
-          <BlogSidebarCard {...value} />
+          <BlogSidebarCard key={idx} {...value} />
         ))}
       </div>
     </div>

@@ -35,7 +35,6 @@ export function useQuerySearchPaginated<QueryReturn>({
     queryKey: [...key, search, hasPrevPage, hasNextPage, currentPage, maxPage],
     queryFn: () => queryFn({ search: search, limit: limit, offset: offset }),
     onSuccess: (value: PaginatedDataWithMeta<QueryReturn>) => {
-      console.log(value.meta);
       if (successFn) {
         successFn(value);
       }

@@ -38,7 +38,6 @@ function getIcon(props: IconProps) {
 }
 
 const InteractiveMap = ({ destinations }: any) => {
-  console.log(destinations);
   const mapCenterLat = -8.2388059;
   const mapCenterLng = 115.3787013;
   const zoomLevel = 13;
@@ -70,19 +69,23 @@ const InteractiveMap = ({ destinations }: any) => {
         />
         <ZoomControl position="bottomright" />
         {destinations?.map(
-          ({
-            title,
-            shortDescription,
-            location,
-            category,
-            coordinate,
-            images,
-          }: MapMetadata) => {
+          (
+            {
+              title,
+              shortDescription,
+              location,
+              category,
+              coordinate,
+              images,
+            }: MapMetadata,
+            idx: number
+          ) => {
             if (!coordinate) {
-              return <div></div>;
+              return <div key={idx}></div>;
             }
             return (
               <Marker
+                key={idx}
                 icon={getIcon({ category: category })}
                 position={[coordinate.latitude, coordinate.longitude]}
                 eventHandlers={{
@@ -94,8 +97,11 @@ const InteractiveMap = ({ destinations }: any) => {
                   },
                 }}
               >
-                <Popup closeButton={false} maxWidth={500}>
-                  <div className="grid grid-flow-col place-items-center gap-4">
+                <Popup closeButton={false} maxWidth={500} key={idx}>
+                  <div
+                    className="grid grid-flow-col place-items-center gap-4"
+                    key={idx}
+                  >
                     <div className="w-[100px] h-[100px] rounded-[10px] relative overflow-hidden block">
                       <Image
                         src={images.image.url}

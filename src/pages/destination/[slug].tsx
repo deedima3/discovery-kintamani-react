@@ -32,7 +32,6 @@ interface PageProps {
 }
 
 const Slug = ({ data, slug, blogs }: PageProps) => {
-  console.log(blogs);
   const breadCrumbsData = [
     {
       route: "/",
@@ -62,10 +61,12 @@ const Slug = ({ data, slug, blogs }: PageProps) => {
       <div className="w-full relative">
         <AspectRatio.Root ratio={20 / 9} className="overflow-hidden grid">
           <Image
-            alt={data.images.alt}
+            alt={data.images.alt ? data.images.alt : "image"}
             src={data.images.image.url}
             // width={data.images.image.width}
             // height={data.images.image.height}
+            priority
+            sizes="100%"
             className="object-cover w-full rounded-brand"
             fill
           />
@@ -86,7 +87,9 @@ const Slug = ({ data, slug, blogs }: PageProps) => {
                 </IconContext.Provider>
               }
             >
-              Open 24 Hours
+              {data.alwaysOpen
+                ? "Open 24 Hours"
+                : "Open from " + data.openTime + " until " + data.closeTime}
             </DestinationDetailBadge>
             <DestinationDetailBadge
               extendedClass={
@@ -120,7 +123,12 @@ const Slug = ({ data, slug, blogs }: PageProps) => {
             Exploring Tourism Destinations with Map in Hand
           </p>
           <Map
-            href=""
+            href={
+              "http://www.google.com/maps/place/" +
+              data.coordinate.latitude +
+              "," +
+              data.coordinate.longitude
+            }
             long={data.coordinate.longitude}
             lat={data.coordinate.latitude}
           />
