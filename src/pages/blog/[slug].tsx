@@ -20,6 +20,7 @@ import SocialMediaShare from "@/components/Section/SocialMediaShare";
 import { useRouter } from "next/router";
 import BlogCard from "@/components/Card/BlogCard";
 import { PageSEO } from "@/components/SEO/CommonSEO";
+import DestinationMarkdown from "@/components/Markdown/DestinationMarkdown";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   let data;
@@ -71,7 +72,7 @@ const BlogDetail = ({ data, otherBlog }: BlogDetailApi) => {
         isBold: false,
       },
       {
-        route: `/blog/Deta`,
+        route: `/blog/${data.slug}`,
         label: `Detail`,
         isBold: true,
       },
@@ -96,11 +97,9 @@ const BlogDetail = ({ data, otherBlog }: BlogDetailApi) => {
                 publishTime={data.updatedAt}
               />
             </div>
-            <div className="mt-5">
-              <FullScreenBlogImage image={data.image} />
-            </div>
-            <div className="flex flex-col w-full max-w-screen-xl gap-2 px-2 mx-auto mt-5 text-sm break-words md:text-lg font-poppin htmlparser">
-              {ReactHtmlParser(data.description.html)}
+            <FullScreenBlogImage image={data.image} />
+            <div className="flex flex-col w-full max-w-screen-xl gap-2 px-2 mx-auto mt-5 text-sm break-words md:text-lg">
+              <DestinationMarkdown content={data.description.markdown} />
             </div>
           </section>
           <section

@@ -1,7 +1,7 @@
 import { GraphCMSDescription, GraphCMSImage } from "./graphcms.interfaces";
 
 export interface Blog {
-  description: GraphCMSDescription;
+  description: MarkdownOnly;
   image: GraphCMSImage;
   slug: string;
   title: string;
@@ -110,4 +110,12 @@ export interface MapMetadata {
   category: string;
   coordinate: CoordinateLngLat;
   images: GraphCMSImage;
+}
+
+export interface InformationData {
+  src: string;
+  reverse?: boolean;
+  title: string;
+  text: string;
+  subtext: string
 }

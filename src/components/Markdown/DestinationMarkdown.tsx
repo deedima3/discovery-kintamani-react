@@ -10,7 +10,7 @@ const DestinationMarkdown = ({ content, components }: any) => {
       components={{
         p: (props) => (
           <p
-            className="font-poppins md:text-lg text-base lg:text-2xl pb-8"
+            className="pb-8 text-base font-poppins md:text-lg lg:text-2xl"
             {...props}
           />
         ),

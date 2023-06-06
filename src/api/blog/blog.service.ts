@@ -1,22 +1,22 @@
 import {
-  Blog,
-  BlogQueryData,
-  FeaturedBlogData,
-  FeaturedBlogsWrapper,
-  PaginatedQueryParams,
+    Blog,
+    BlogQueryData,
+    FeaturedBlogData,
+    FeaturedBlogsWrapper,
+    PaginatedQueryParams,
 } from "@/interfaces/data.interfaces";
 import {
-  ApiDataResponse,
-  ApiNodeResponse,
-  ApiPaginatedResponse,
-  ApiResponse,
-  PaginatedDataWithMeta,
+    ApiDataResponse,
+    ApiNodeResponse,
+    ApiPaginatedResponse,
+    ApiResponse,
+    PaginatedDataWithMeta,
 } from "@/interfaces/graphcms.interfaces";
 import { graphQLClient } from "@/utils/query";
 import { gql } from "graphql-request";
 
 export const getAllBlog = async (search: string) => {
-  const query = gql`
+    const query = gql`
     query GetAllBlogs($search: String) {
       blogs(where: { title_contains: $search }) {
         image {
@@ -35,14 +35,14 @@ export const getAllBlog = async (search: string) => {
       }
     }
   `;
-  const { blogs } = (await graphQLClient.request(query, {
-    search: search,
-  })) as ApiDataResponse<Blog[]>;
-  return blogs;
+    const { blogs } = (await graphQLClient.request(query, {
+        search: search,
+    })) as ApiDataResponse<Blog[]>;
+    return blogs;
 };
 
 export const getAllBlogLimited = async (limit: number) => {
-  const query = gql`
+    const query = gql`
     query GetAllBlogsLimited($limit: Int) {
       blogs(first: $limit) {
         image {
@@ -61,16 +61,16 @@ export const getAllBlogLimited = async (limit: number) => {
       }
     }
   `;
-  const { blogs } = (await graphQLClient.request(query, {
-    limit: limit,
-  })) as ApiDataResponse<Blog[]>;
-  return blogs;
+    const { blogs } = (await graphQLClient.request(query, {
+        limit: limit,
+    })) as ApiDataResponse<Blog[]>;
+    return blogs;
 };
 
 export const getAllBlogPaginated = async (
-  queryParams: PaginatedQueryParams
+    queryParams: PaginatedQueryParams
 ) => {
-  const query = gql`
+    const query = gql`
     query GetAllBlog($search: String, $limit: Int, $offset: Int) {
       blogsConnection(
         where: { title_contains: $search }
@@ -109,21 +109,21 @@ export const getAllBlogPaginated = async (
       }
     }
   `;
-  const { blogsConnection } = (await graphQLClient.request(
-    query,
-    queryParams
-  )) as ApiDataResponse<ApiPaginatedResponse<ApiNodeResponse<BlogQueryData>[]>>;
-  return {
-    data: blogsConnection.edges.map((blogData) => {
-      return blogData.node;
-    }),
-    meta: blogsConnection.pageInfo,
-    aggregate: blogsConnection.aggregate,
-  } as unknown as PaginatedDataWithMeta<BlogQueryData[]>;
+    const { blogsConnection } = (await graphQLClient.request(
+        query,
+        queryParams
+    )) as ApiDataResponse<ApiPaginatedResponse<ApiNodeResponse<BlogQueryData>[]>>;
+    return {
+        data: blogsConnection.edges.map((blogData) => {
+            return blogData.node;
+        }),
+        meta: blogsConnection.pageInfo,
+        aggregate: blogsConnection.aggregate,
+    } as unknown as PaginatedDataWithMeta<BlogQueryData[]>;
 };
 
 export const getBlogByID = async (slug: string) => {
-  const query = gql`
+    const query = gql`
     query GetBlogByID($slug: String) {
       blog(where: { slug: $slug }) {
         description {
@@ -144,28 +144,28 @@ export const getBlogByID = async (slug: string) => {
       }
     }
   `;
-  const { blog } = (await graphQLClient.request(query, {
-    slug: slug,
-  })) as ApiDataResponse<Blog>;
-  return blog;
+    const { blog } = (await graphQLClient.request(query, {
+        slug: slug,
+    })) as ApiDataResponse<Blog>;
+    return blog;
 };
 
 export const getAllBlogSlug = async () => {
-  const query = gql`
+    const query = gql`
     query GetAllBlogs {
       blogs {
         slug
       }
     }
   `;
-  const { blogs } = (await graphQLClient.request(query)) as ApiDataResponse<
-    { slug: string }[]
-  >;
-  return blogs;
+    const { blogs } = (await graphQLClient.request(query)) as ApiDataResponse<
+        { slug: string }[]
+    >;
+    return blogs;
 };
 
 export const getFirstBlogs = async (limit: number) => {
-  const query = gql`
+    const query = gql`
     query MyQuery($limit: Int) {
       blogs(first: $limit) {
         slug
@@ -181,10 +181,10 @@ export const getFirstBlogs = async (limit: number) => {
       }
     }
   `;
-  const data = (await graphQLClient.request(query, {
-    limit: limit,
-  })) as ApiDataResponse<FeaturedBlogsWrapper<FeaturedBlogData>[]>;
-  return {
-    blogs: data.blogs,
-  } as unknown as FeaturedBlogsWrapper<FeaturedBlogData[]>;
+    const data = (await graphQLClient.request(query, {
+        limit: limit,
+    })) as ApiDataResponse<FeaturedBlogsWrapper<FeaturedBlogData>[]>;
+    return {
+        blogs: data.blogs,
+    } as unknown as FeaturedBlogsWrapper<FeaturedBlogData[]>;
 };
