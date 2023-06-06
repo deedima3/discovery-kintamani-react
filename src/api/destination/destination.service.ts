@@ -9,7 +9,6 @@ import {
   ApiDataResponse,
   ApiNodeResponse,
   ApiPaginatedResponse,
-  ApiResponse,
   PaginatedDataWithMeta,
   ApiSlugsResponse,
 } from "@/interfaces/graphcms.interfaces";

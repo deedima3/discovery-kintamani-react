@@ -35,14 +35,14 @@ const DestinationIndexPage = () => {
   });
 
   return (
-    <div className="bg-white w-full h-full text-black font-poppins">
+    <div className="w-full h-full text-black bg-white font-poppins">
       <div className="container mx-auto bg-white py-14">
         <Breadcrumb breadcrumbArray={breadCrumbsData} />
       </div>
       <div className="flex flex-row items-center justify-between">
         <div>
           <h1 className="font-bold text-[40px] font-quicksand">
-            The Traveler's Handbook
+            The Traveler`&apos;`s Handbook
           </h1>
           <p className="text-2xl opacity-50">
             Essential Destination Information for Adventurous Explorers

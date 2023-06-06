@@ -2,125 +2,117 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background-color: white;
-  /* background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
-}
-
 .bg-linear-blue {
-  background: linear-gradient(180deg, #64fbd7 -0.03%, #5383ff 100.04%);
+    background: linear-gradient(180deg, #64fbd7 -0.03%, #5383ff 100.04%);
 }
 
 .bg-linear-purple {
-  background: linear-gradient(128.49deg, #cb5dff 0%, #1d41be 100%);
+    background: linear-gradient(128.49deg, #cb5dff 0%, #1d41be 100%);
 }
 
 .bg-linear-red {
-  background: linear-gradient(51.51deg, #c15cff 0%, #ff5454 100%);
+    background: linear-gradient(51.51deg, #c15cff 0%, #ff5454 100%);
 }
 
 .bg-linear-green {
-  background: linear-gradient(128.49deg, #b0ff4b 0%, #11876b 100%);
+    background: linear-gradient(128.49deg, #b0ff4b 0%, #11876b 100%);
 }
 
 .text-linear-gold {
-  background: -webkit-linear-gradient(135.93deg, #ffd809 9.99%, #fd900c 66.61%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    background: -webkit-linear-gradient(135.93deg, #ffd809 9.99%, #fd900c 66.61%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .leaflet-popup-content-wrapper {
-  border-radius: 10px;
+    border-radius: 10px;
 }
 
 .leaflet-popup {
-  position: relative;
+    position: relative;
 }
 
 .leaflet-popup-close-button {
-  margin: 0.2rem;
+    margin: 0.2rem;
 }
 
 .leaflet-popup-tip {
-  display: none;
+    display: none;
 }
+
 .leaflet-popup-content p {
-  margin: 0;
+    margin: 0;
 }
 
 .leaflet-bar a {
-  background-color: black;
-  transition: all linear 0.2s;
+    background-color: black;
+    transition: all linear 0.2s;
 }
+
 .leaflet-bar a span {
-  background: -webkit-linear-gradient(135.93deg, #ffd809 9.99%, #fd900c 66.61%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    background: -webkit-linear-gradient(135.93deg, #ffd809 9.99%, #fd900c 66.61%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .leaflet-bar a:hover {
-  background-color: rgb(85, 85, 85);
+    background-color: rgb(85, 85, 85);
 }
 
 .leaflet-touch .leaflet-bar {
-  box-shadow: none;
-  border: 1px solid white;
-  border-top-left-radius: 10px;
+    box-shadow: none;
+    border: 1px solid white;
+    border-top-left-radius: 10px;
 }
 
 .leaflet-touch .leaflet-bar a:first-child {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .leaflet-touch .leaflet-bar a:last-child {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .leaflet-touch .leaflet-bar a {
-  padding: 0.5rem 1rem;
-  width: auto;
-  height: auto;
+    padding: 0.5rem 1rem;
+    width: auto;
+    height: auto;
 }
 
 .leaflet-right .leaflet-control {
-  margin-right: 2rem;
+    margin-right: 2rem;
 }
 
 .leaflet-bottom .leaflet-control {
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
 }
 
 .leaflet-control {
-  z-index: 0 !important;
+    z-index: 0 !important;
 }
+
 .leaflet-pane {
-  z-index: 0 !important;
+    z-index: 0 !important;
 }
+
 .leaflet-top,
 .leaflet-bottom {
-  z-index: 0 !important;
+    z-index: 0 !important;
+}
+
+.htmlparser img {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 2px;
+    border-radius: 20px;
+}
+
+@media only screen and (max-width: 1279px) {
+    .htmlparser img {
+        max-width: 300px;
+    }
 }

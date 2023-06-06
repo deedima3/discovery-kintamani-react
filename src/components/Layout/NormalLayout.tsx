@@ -10,7 +10,9 @@ interface NormalLayoutProps {
 const NormalLayout: FC<NormalLayoutProps> = ({ children, pageTitle }) => {
   return (
     <>
-      <div className="w-full mx-auto max-w-screen-2xl bg-white">{children}</div>
+      <div className="w-full px-2 mx-auto bg-white max-w-screen-2xl">
+        {children}
+      </div>
     </>
   );
 };

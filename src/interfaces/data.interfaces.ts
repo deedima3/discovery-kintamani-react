@@ -7,6 +7,7 @@ export interface Blog {
   title: string;
   subtitle: string;
   shortDescription: string;
+  updatedAt: string;
 }
 
 export interface BlogQueryData {

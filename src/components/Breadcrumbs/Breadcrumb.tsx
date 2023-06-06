@@ -14,7 +14,7 @@ export interface BreadcrumbData {
 const Breadcrumb: FC<BreadcrumbProps> = ({ breadcrumbArray }) => {
   return (
     <div
-      className="flex flex-row gap-1 text-lg font-poppins"
+      className="flex flex-row gap-1 text-sm md:text-lg font-poppins"
       aria-label="Breadcrumb"
     >
       {breadcrumbArray &&
