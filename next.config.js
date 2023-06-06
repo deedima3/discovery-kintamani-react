@@ -8,6 +8,7 @@ const nextConfig = {
         hostname: 'media.graphassets.com',
       },
     ],
+    domains: ['images.unsplash.com']
   },
 }
 
