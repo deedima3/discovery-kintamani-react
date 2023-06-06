@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="w-full">
-      <div className="mx-auto px-3 py-10 sm:py-24 flex sm:flex-row sm:items-center justify-between max-w-screen-2xl bg-black">
+    <div className="w-full bg-black">
+      <div className="mx-auto px-3 py-10 sm:py-24 flex sm:flex-row sm:items-center justify-between max-w-screen-2xl text-white">
         <div className="flex flex-col sm:flex-row gap-8 sm:gap-8 md:gap-16 lg:gap-24">
           <div className="flex flex-col gap-4">
             <Link href={"/"} className="flex items-center gap-3">
