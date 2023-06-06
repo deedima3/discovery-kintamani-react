@@ -30,27 +30,18 @@ export interface DestinationQueryData {
   shortDescription: string;
 }
 
-<<<<<<< HEAD
 export interface DestinationImages {
-=======
-interface DestinationImages {
->>>>>>> 277ff934e46b98bf284c2f0ca0beb7c44308e82c
   image: GraphCMSDestinationImage;
   alt: string;
 }
 
-<<<<<<< HEAD
 export interface GraphCMSDestinationImage {
-=======
-interface GraphCMSDestinationImage {
->>>>>>> 277ff934e46b98bf284c2f0ca0beb7c44308e82c
   height: number;
   size: number;
   url: string;
   width: number;
 }
 
-<<<<<<< HEAD
 export interface Destination {
   slug: string;
 }
@@ -59,8 +50,6 @@ export interface DestinationResponse<Response> {
   destination: Response;
 }
 
-=======
->>>>>>> 277ff934e46b98bf284c2f0ca0beb7c44308e82c
 // export interface Destination {
 //   description: GraphCMSDescription;
 //   images: SingleImage;
@@ -69,7 +58,6 @@ export interface DestinationResponse<Response> {
 //   subtitle: string;
 //   shortDescription: string;
 // }
-<<<<<<< HEAD
 
 export interface DestinationData {
   alwaysOpen: boolean;
@@ -109,5 +97,3 @@ export interface FeaturedBlogData {
 export interface FeaturedBlogsWrapper<T> {
   blogs: T;
 }
-=======
->>>>>>> 277ff934e46b98bf284c2f0ca0beb7c44308e82c

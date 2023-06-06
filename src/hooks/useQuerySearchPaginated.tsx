@@ -12,6 +12,7 @@ interface useQuerySearchPaginatedParams<QueryReturn> {
   ) => Promise<PaginatedDataWithMeta<QueryReturn>>;
   successFn?: (queryReturn: PaginatedDataWithMeta<QueryReturn>) => void;
   errorFn?: (queryError: Error) => void;
+  limit?: number;
 }
 
 export function useQuerySearchPaginated<QueryReturn>({
@@ -20,27 +21,28 @@ export function useQuerySearchPaginated<QueryReturn>({
   queryFn,
   successFn,
   errorFn,
+  limit = MAX_QUERY_LIMIT,
 }: useQuerySearchPaginatedParams<QueryReturn>) {
   const [hasPrevPage, setHasPrevPage] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(false);
   const [currentPage, setPage] = useState<number>(1);
   const [maxPage, setMaxPage] = useState<number>(0);
   const offset = useMemo(() => {
-    return (currentPage - 1) * MAX_QUERY_LIMIT;
+    return (currentPage - 1) * limit;
   }, [currentPage]);
 
   const { data, isLoading, isError } = useQuery({
     queryKey: [...key, search, hasPrevPage, hasNextPage, currentPage, maxPage],
-    queryFn: () =>
-      queryFn({ search: search, limit: MAX_QUERY_LIMIT, offset: offset }),
+    queryFn: () => queryFn({ search: search, limit: limit, offset: offset }),
     onSuccess: (value: PaginatedDataWithMeta<QueryReturn>) => {
+      console.log(value.meta);
       if (successFn) {
         successFn(value);
       }
       if (value.meta) {
         setHasNextPage(value.meta.hasNextPage);
         setHasPrevPage(value.meta.hasPreviousPage);
-        setMaxPage(value.meta.pageSize);
+        setMaxPage(Math.ceil(value.aggregate.count / limit));
       }
     },
     onError: (error: Error) => {

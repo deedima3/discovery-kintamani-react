@@ -4,6 +4,7 @@ import DestinationCard from "@/components/Card/DestinationCard";
 import NormalLayout from "@/components/Layout/NormalLayout";
 import CustomPagination from "@/components/Pagination/CustomPagination";
 import SearchBar from "@/components/Search/SearchBar";
+import BlogCardSkeleton from "@/components/Skeleton/BlogCardSkeleton";
 import { useQuerySearchPaginated } from "@/hooks/useQuerySearchPaginated";
 import { DestinationQueryData } from "@/interfaces/data.interfaces";
 import React from "react";
@@ -30,6 +31,7 @@ const DestinationIndexPage = () => {
     queryFn: destinationQueries.getAllDestinationPaginated,
     key: ["getAllPaginatedDestination"],
     search: search,
+    limit: 9,
   });
 
   return (
@@ -52,17 +54,30 @@ const DestinationIndexPage = () => {
           placeholder="Search destination"
         />
       </div>
-      <div className="grid grid-cols-3 place-items-center gap-5 gap-y-12">
-        {!isLoading &&
+      <div className="grid grid-cols-3 place-items-center gap-5 gap-y-12 mt-[100px] mb-[50px]">
+        {isLoading ? (
+          <>
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+            <BlogCardSkeleton />
+          </>
+        ) : (
           data?.data.map((destinationData) => (
             <DestinationCard {...destinationData} key={destinationData.slug} />
-          ))}
+          ))
+        )}
       </div>
-      <CustomPagination
-        maxPage={maxPage}
-        setPage={setPage}
-        currentPage={currentPage}
-      />
+      <div className="mb-[110px] w-full flex flex-row justify-center">
+        {data && (
+          <div className="w-fit">
+            <CustomPagination
+              maxPage={maxPage}
+              setPage={setPage}
+              currentPage={currentPage}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

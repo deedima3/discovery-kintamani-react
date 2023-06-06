@@ -29,6 +29,7 @@ const Blog = () => {
     queryFn: getAllBlogPaginated,
     key: ["getAllPaginatedBlog"],
     search: search,
+    limit: 6,
   });
 
   return (
@@ -58,7 +59,7 @@ const Blog = () => {
           })
         )}
       </div>
-      <div className="flex justify-center w-full">
+      <div className="flex justify-center w-full text-black">
         <CustomPagination
           maxPage={maxPage}
           currentPage={currentPage}

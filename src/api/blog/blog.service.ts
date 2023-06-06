@@ -54,6 +54,9 @@ export const getAllBlogPaginated = async (
           hasPreviousPage
           pageSize
         }
+        aggregate {
+          count
+        }
         edges {
           node {
             slug
@@ -82,6 +85,7 @@ export const getAllBlogPaginated = async (
       return blogData.node;
     }),
     meta: blogsConnection.pageInfo,
+    aggregate: blogsConnection.aggregate,
   } as unknown as PaginatedDataWithMeta<BlogQueryData[]>;
 };
 

@@ -28,6 +28,7 @@ export interface GraphCMSPageInfo {
 export interface ApiPaginatedResponse<T> {
   pageInfo: GraphCMSPageInfo;
   edges: T;
+  aggregate: Aggregate;
 }
 
 export interface ApiNodeResponse<T> {
@@ -37,8 +38,13 @@ export interface ApiNodeResponse<T> {
 export interface PaginatedDataWithMeta<T> {
   data: T;
   meta: GraphCMSPageInfo;
+  aggregate: Aggregate;
 }
 
 export interface ApiSlugsResponse<T> {
   destinations: T;
+}
+
+export interface Aggregate {
+  count: number;
 }

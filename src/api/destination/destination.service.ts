@@ -47,6 +47,9 @@ const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
           hasPreviousPage
           pageSize
         }
+        aggregate {
+          count
+        }
       }
     }
   `;
@@ -65,6 +68,7 @@ const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
       return destinationData.node;
     }),
     meta: destinationsConnection.pageInfo,
+    aggregate: destinationsConnection.aggregate,
   } as unknown as PaginatedDataWithMeta<DestinationQueryData[]>;
 };
 
