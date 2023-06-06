@@ -43,7 +43,7 @@ const DestinationIndexPage = () => {
       <div className="flex flex-row items-center justify-between">
         <div>
           <h1 className="font-bold text-[40px] font-quicksand">
-            The Traveler's Handbook
+            The Traveler`s Handbook
           </h1>
           <p className="text-2xl opacity-50">
             Essential Destination Information for Adventurous Explorers
