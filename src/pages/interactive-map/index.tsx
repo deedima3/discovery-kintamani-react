@@ -15,7 +15,7 @@ const breadCrumbsData = [
     isBold: false,
   },
   {
-    route: "/discover/interactive-map",
+    route: "/interactive-map",
     label: "Interactive Maps",
     isBold: true,
   },

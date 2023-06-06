@@ -5,6 +5,8 @@ import {
   DestinationResponse,
   DestinationData,
   MapMetadataWrapper,
+  DestinationsWrapper,
+  FeaturedDestinationData,
 } from "@/interfaces/data.interfaces";
 import {
   ApiDataResponse,
@@ -27,10 +29,8 @@ export const getDestinations = async () => {
           latitude
           longitude
         }
-        id
         images {
           ... on Image {
-            id
             alt
             image {
               width
@@ -42,18 +42,18 @@ export const getDestinations = async () => {
         isFeatured
         location
         openTime
-        publishedAt
         shortDescription
         slug
-        stage
         title
       }
     }
-  }
-  `
-  const data = await graphQLClient.request(query) as ApiDataResponse<DestinationData[]>
-  return data
-}
+  `;
+  const data: ApiDataResponse<DestinationsWrapper<FeaturedDestinationData>[]> =
+    await graphQLClient.request(query);
+  return {
+    destinations: data.destinations,
+  } as unknown as DestinationsWrapper<FeaturedDestinationData[]>;
+};
 
 const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
   const query = gql`

@@ -117,5 +117,23 @@ export interface InformationData {
   reverse?: boolean;
   title: string;
   text: string;
-  subtext: string
+  subtext: string;
+}
+
+export interface DestinationsWrapper<T> {
+  destinations: T;
+}
+
+export interface FeaturedDestinationData {
+  alwaysOpen: boolean;
+  category: string;
+  closeTime: number;
+  coordinate: CoordinateLngLat;
+  images: GraphCMSImage;
+  isFeatured: boolean;
+  location: string;
+  openTime: number;
+  shortDescription: string;
+  slug: string;
+  title: string;
 }

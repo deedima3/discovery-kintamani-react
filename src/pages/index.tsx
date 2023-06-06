@@ -14,19 +14,28 @@ import {
 import { GiBinoculars, GiGreekTemple, GiHourglass } from "react-icons/gi";
 
 import { useQuery } from "@tanstack/react-query";
-import { getDestinations } from "@/api/destination/destination.service";
+import destinationQueries, {
+  getDestinations,
+} from "@/api/destination/destination.service";
 import dynamic from "next/dynamic";
 import { PageSEO } from "@/components/SEO/CommonSEO";
 import { CATEGORY_VALUE } from "@/utils/constant";
-import { DestinationData } from "@/interfaces/data.interfaces";
+import {
+  DestinationData,
+  FeaturedDestinationData,
+} from "@/interfaces/data.interfaces";
 
 const Map = dynamic(() => import("@/components/Map/oddysey"), { ssr: false });
 
-const Home = () => {
-  const { data, isLoading } = useQuery(["destinations"], getDestinations);
-  if (isLoading) {
-    return null;
-  }
+interface PageProps {
+  destinations: FeaturedDestinationData[];
+}
+
+const Home = ({ destinations }: PageProps) => {
+  // const { data, isLoading } = useQuery(["destinations"], getDestinations);
+  // if (isLoading) {
+  //   return null;
+  // }
 
   return (
     <div className="bg-white text-stone-800">
@@ -41,15 +50,17 @@ const Home = () => {
         </div>
         <div className="flex justify-end w-full h-full sm:w-1/2 sm:items-center">
           <div className="w-full sm:w-[650px] h-full sm:h-[300px] md:h-[400px]">
-            <Image
-              src={data!.destinations[7].images.image.url}
-              width={data?.destinations[7].images?.image?.width}
-              height={data?.destinations[7].images?.image?.height}
-              style={{ height: "100%", width: "100%", objectFit: "cover" }}
-              className="sm:rounded-l-3xl xl:rounded-3xl bg-stone-300"
-              alt={"Headers"}
-              priority
-            />
+            {destinations[7].images && (
+              <Image
+                src={destinations[7].images.image.url}
+                width={destinations[7].images?.image?.width}
+                height={destinations[7].images?.image?.height}
+                style={{ height: "100%", width: "100%", objectFit: "cover" }}
+                className="sm:rounded-l-3xl xl:rounded-3xl bg-stone-300"
+                alt={"Headers"}
+                priority
+              />
+            )}
           </div>
         </div>
 
@@ -87,7 +98,7 @@ const Home = () => {
           modules={[FreeMode]}
           className="w-full cursor-pointer mySwiper"
         >
-          {data?.destinations.map((destinationData: DestinationData, key) => (
+          {destinations.map((destinationData: FeaturedDestinationData, key) => (
             <SwiperSlide className="flex flex-col" key={key}>
               <div className="w-full mb-2 h-72">
                 <Image
@@ -163,7 +174,7 @@ const Home = () => {
             className="col-span-2 bg-gray-400 bg-center bg-cover h-72 rounded-xl"
             style={{
               backgroundImage: `url(${
-                data != null && data.destinations[4].images?.image?.url
+                destinations != null && destinations[4].images?.image?.url
               })`,
             }}
           >
@@ -174,7 +185,7 @@ const Home = () => {
             </div>
           </div>
 
-          {data?.destinations.slice(0, 4).map((dataDestination, key) => (
+          {destinations.slice(0, 4).map((dataDestination, key) => (
             <div
               className="col-span-2 bg-gray-400 bg-center bg-cover sm:col-span-1 h-72 rounded-xl"
               style={{
@@ -194,6 +205,14 @@ const Home = () => {
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  // const { data, isLoading } = useQuery(["destinations"], getDestinations);
+  const data = await getDestinations();
+  return {
+    props: data,
+  };
+}
 
 Home.getLayout = function getLayout(page: React.ReactNode) {
   return (
