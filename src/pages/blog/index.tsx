@@ -36,7 +36,7 @@ const Blog = () => {
 
   return (
     <>
-      <PageSEO title="Blogs | Find some awesome srticles that covers about Kintamani" />
+      <PageSEO title="Blogs | Find some awesome articles that covers about Kintamani" />
       <section className="flex flex-col w-full gap-5">
         <Breadcrumb breadcrumbArray={breadcrumbs} />
         <SearchPageTitle
