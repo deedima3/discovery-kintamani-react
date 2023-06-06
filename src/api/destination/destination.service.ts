@@ -30,7 +30,11 @@ const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
                 image {
                   size
                   height
-                  url
+                  url(
+                    transformation: {
+                      image: { resize: { width: 500, height: 500 } }
+                    }
+                  )
                   width
                 }
                 alt
