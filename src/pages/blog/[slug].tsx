@@ -63,7 +63,12 @@ const BlogDetail = ({ data, otherBlog }: BlogDetailApi) => {
       {
         route: "/blog",
         label: "Blog",
-        isBold: true,
+        isBold: false,
+      },
+      {
+        route: "/blog",
+        label: "Article",
+        isBold: false,
       },
       {
         route: `/blog/Deta`,

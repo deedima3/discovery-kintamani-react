@@ -12,7 +12,10 @@ const DestinationCard: FC<DestinationQueryData> = ({
   shortDescription,
 }) => {
   return (
-    <div className="flex flex-col w-full h-auto">
+    <Link
+      href={`/destination/${slug}`}
+      className="flex flex-col w-full h-auto hover:shadow-xl shadow-none p-4 rounded-[10px] transition-all duration-300"
+    >
       <AspectRatio.Root
         ratio={1 / 1}
         className="mt-2 overflow-clip rounded-brand"
@@ -34,16 +37,13 @@ const DestinationCard: FC<DestinationQueryData> = ({
       </AspectRatio.Root>
       <h5 className="text-[28px] font-semibold font-poppins mt-5">{title}</h5>
 
-      <p className="w-full mt-2 text-black font-poppins text-md opacity-40">
+      <p className="w-full mt-2 text-black font-poppins text-lg opacity-40">
         {truncateDescription(shortDescription)}
       </p>
-      <Link
-        href={`/destination/${slug}`}
-        className="flex font-bold text-transparent from-brand-gradient-top to-brand-gradient-down bg-gradient-to-br bg-clip-text"
-      >
+      <div className="flex font-bold text-transparent from-brand-gradient-top to-brand-gradient-down bg-gradient-to-br bg-clip-text">
         <p>Read More &#8594;</p>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 
