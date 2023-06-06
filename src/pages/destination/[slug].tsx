@@ -166,11 +166,6 @@ export async function getStaticPaths() {
   const { data } = await destinationQueries.getAllDestinationsSlug();
   const paths = data.map(({ slug }) => ({ params: { slug: slug } }));
 
-  // Get the paths we want to pre-render based on posts
-  // const paths = posts.map((post) => ({
-  //   params: { id: post.id },
-  // }));
-
   // We'll pre-render only these paths at build time.
   // { fallback: 'blocking' } will server-render pages
   // on-demand if the path doesn't exist.
@@ -178,11 +173,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-  // const res = await fetch('https://.../posts');
-  // const posts = await res.json();
-
   const { params } = context;
-  // console.log(params);
   const { blogs } = await getFirstBlogs(5);
   const res = await destinationQueries.getDestinationBySlug(params?.slug);
   return {
