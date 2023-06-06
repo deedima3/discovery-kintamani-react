@@ -52,15 +52,7 @@ const DestinationIndexPage = () => {
           placeholder="Search destination"
         />
       </div>
-      <div className="grid grid-flow-col grid-cols-3 place-items-center gap-5">
-        {!isLoading &&
-          data?.data.map((destinationData) => (
-            <DestinationCard {...destinationData} key={destinationData.slug} />
-          ))}
-        {!isLoading &&
-          data?.data.map((destinationData) => (
-            <DestinationCard {...destinationData} key={destinationData.slug} />
-          ))}
+      <div className="grid grid-cols-3 place-items-center gap-5 gap-y-12">
         {!isLoading &&
           data?.data.map((destinationData) => (
             <DestinationCard {...destinationData} key={destinationData.slug} />

@@ -18,12 +18,13 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  background-color: white;
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }
 
 .bg-linear-blue {
@@ -43,7 +44,7 @@ body {
 }
 
 .text-linear-gold {
-  background: -webkit-linear-gradient(135.93deg, #ffd809 9.99%, #fd900c 66.61%);
+  background: -webkit-linear-gradient(135.93deg, #ffd809, #fd900c);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

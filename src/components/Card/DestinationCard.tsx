@@ -28,7 +28,7 @@ const DestinationCard: FC<DestinationQueryData> = ({
           // blurDataURL=""
         />
       </AspectRatio.Root>
-      <h5 className="text-[28px] font-semibold font-poppins">{title}</h5>
+      <h5 className="text-[28px] font-semibold font-poppins mt-5">{title}</h5>
 
       <p className="w-full mt-2 text-black font-poppins text-md opacity-40">
         {truncateDescription(shortDescription)}
