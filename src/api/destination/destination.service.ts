@@ -51,8 +51,8 @@ export const getDestinations = async () => {
     }
   }
   `
-  const { destinations } = await graphQLClient.request(query) as ApiDataResponse<DestinationData[]>
-  return destinations
+  const data = await graphQLClient.request(query) as ApiDataResponse<DestinationData[]>
+  return data
 }
 
 const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
