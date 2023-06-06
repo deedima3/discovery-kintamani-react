@@ -30,22 +30,30 @@ const Home = () => {
 
   return (
     <div className="bg-white text-stone-800">
-      <section className="h-screen w-full pt-36 lg:pt-0 flex flex-col sm:flex-row gap-10 md:gap-0">
-        <div className="w-full sm:w-1/2 flex flex-col justify-center gap-5">
+      <section className="flex flex-col w-full h-screen gap-10 pt-36 lg:pt-0 sm:flex-row md:gap-0">
+        <div className="flex flex-col justify-center w-full gap-5 sm:w-1/2">
           <h1 className="text-5xl text-stone-800 font-quicksand font-semibold leading-[58px]">
-            Exploring Bali's <br /> Highland Treasures
+            Exploring Bali`s <br /> Highland Treasures
           </h1>
-          <p className="text-xl text-gray-400 font-light pr-14">
+          <p className="text-xl font-light text-gray-400 pr-14">
             Discover the Enchanting Secrets of Kintamani
           </p>
         </div>
-        <div className="h-full w-full sm:w-1/2 flex sm:items-center justify-end">
+        <div className="flex justify-end w-full h-full sm:w-1/2 sm:items-center">
           <div className="w-full sm:w-[650px] h-full sm:h-[300px] md:h-[400px]">
             <Image
+<<<<<<< HEAD
               src={data?.destinations[7].images.image.url}
               width={data?.destinations[7].images?.image?.width}
               height={data?.destinations[7].images?.image?.height}
               style={{ height: "100%", width: "100%", objectFit: "cover" }}
+=======
+              src="https://images.unsplash.com/photo-1551212040-47117df00603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MTR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
+              alt={"Headers"}
+              width={300}
+              height={300}
+              style={{ width: "100%", height: "100%" }}
+>>>>>>> 8a2ad29 (fix/hotfix-index)
               className="sm:rounded-l-3xl xl:rounded-3xl bg-stone-300"
               alt={"Headers"}
               priority
@@ -60,12 +68,12 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="w-full flex flex-col gap-12 pb-12 mt-20">
+      <section className="flex flex-col w-full gap-12 pb-12 mt-20">
         <div className="text-center">
           <h1 className="text-4xl font-quicksand font-semibold mb-2.5">
             Destination Treasures
           </h1>
-          <p className="text-xl text-gray-400 font-light">
+          <p className="text-xl font-light text-gray-400">
             Showcasing the Spectacular Highlighted Destinations That Define
             Adventure
           </p>
@@ -85,39 +93,45 @@ const Home = () => {
           freeMode={true}
           spaceBetween={30}
           modules={[FreeMode]}
-          className="mySwiper w-full cursor-pointer"
+          className="w-full cursor-pointer mySwiper"
         >
           {data?.destinations.map((destinationData: DestinationData, key) => (
             <SwiperSlide className="flex flex-col" key={key}>
-              <div className="w-full h-72 mb-2">
+              <div className="w-full mb-2 h-72">
                 <Image
                   src={destinationData?.images?.image?.url}
+<<<<<<< HEAD
                   width={destinationData?.images?.image?.width}
                   height={destinationData?.images?.image?.height}
                   style={{ height: "100%", width: "100%", objectFit: "cover" }}
+=======
+                  width={0}
+                  height={0}
+                  style={{ height: "100%", width: "100%" }}
+>>>>>>> 8a2ad29 (fix/hotfix-index)
                   alt={destinationData?.images?.alt}
                   className="rounded-2xl bg-stone-300"
                 />{" "}
               </div>
               <div className="flex gap-3">
                 <div className="flex gap-2">
-                  <HiOutlineMap className="bg-black rounded-3xl text-white p-1 text-2xl" />{" "}
+                  <HiOutlineMap className="p-1 text-2xl text-white bg-black rounded-3xl" />{" "}
                   {destinationData?.location}
                 </div>{" "}
                 <div className="flex gap-2">
                   {destinationData?.category == "religious" ? (
-                    <GiGreekTemple className=" bg-gradient-to-tl from-blue-800 to-purple-500 rounded-xl p-1 text-2xl text-white " />
+                    <GiGreekTemple className="p-1 text-2xl text-white bg-gradient-to-tl from-blue-800 to-purple-500 rounded-xl" />
                   ) : destinationData.category == "tourism" ? (
-                    <GiBinoculars className="bg-gradient-to-tr from-blue-700 to-sky-400 rounded-xl p-1 text-2xl text-white " />
+                    <GiBinoculars className="p-1 text-2xl text-white bg-gradient-to-tr from-blue-700 to-sky-400 rounded-xl " />
                   ) : (
                     destinationData.category == "history" && (
-                      <GiHourglass className="bg-gradient-to-tr from-purple-400 to-red-400 rounded-xl p-1 text-2xl text-white " />
+                      <GiHourglass className="p-1 text-2xl text-white bg-gradient-to-tr from-purple-400 to-red-400 rounded-xl " />
                     )
                   )}
                   {CATEGORY_VALUE[destinationData?.category]}
                 </div>
               </div>
-              <h2 className=" text-2xl font-bold font-quicksand">
+              <h2 className="text-2xl font-bold font-quicksand">
                 {destinationData?.title}
               </h2>
             </SwiperSlide>
@@ -125,49 +139,49 @@ const Home = () => {
         </Swiper>
       </section>
 
-      <section className="w-full flex flex-col sm:flex-row items-center mt-20 gap-6 sm:gap-0">
+      <section className="flex flex-col items-center w-full gap-6 mt-20 sm:flex-row sm:gap-0">
         <div className="w-full sm:w-1/2 h-[45vh] sm:h-[509px]">
-          <div className="w-full sm:w-11/12 h-full bg-stone-300 sm:rounded-r-2xl lg:rounded-2xl overflow-hidden">
+          <div className="w-full h-full overflow-hidden sm:w-11/12 bg-stone-300 sm:rounded-r-2xl lg:rounded-2xl">
             <Map />
           </div>
         </div>
-        <div className="sm:pl-20 lg:pl-32 sm:w-1/2 text-center sm:text-left">
-          <h1 className="w-full text-3xl font-quicksand font-bold mb-5">
+        <div className="text-center sm:pl-20 lg:pl-32 sm:w-1/2 sm:text-left">
+          <h1 className="w-full mb-5 text-3xl font-bold font-quicksand">
             Interactive Map Odyssey
           </h1>
-          <p className="text-xl text-gray-400 font-ligh mb-10">
+          <p className="mb-10 text-xl text-gray-400 font-ligh">
             Unleash Your Inner Explorer and Chart <br /> Your Perfect Travel
             Path
           </p>
           <button className="bg-black rounded-lg">
             {" "}
-            <div className="flex items-center link-active py-4 px-5 gap-2 text-2xl">
+            <div className="flex items-center gap-2 px-5 py-4 text-2xl link-active">
               <HiOutlineGlobeAmericas className="text-[#FD900C]" /> Navigate Me
             </div>{" "}
           </button>
         </div>
       </section>
 
-      <section className="w-full py-28 flex flex-col gap-12">
+      <section className="flex flex-col w-full gap-12 py-28">
         <div className="text-center">
           <h1 className="text-4xl font-quicksand font-semibold mb-2.5">
             Visual Delights of Kintamani
           </h1>
-          <p className="text-xl text-gray-400 font-light">
+          <p className="text-xl font-light text-gray-400">
             Gallery Showcasing the Magnificent Landscapes and Cultural Richness
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div
-            className="col-span-2 h-72 bg-gray-400 rounded-xl bg-cover bg-center"
+            className="col-span-2 bg-gray-400 bg-center bg-cover h-72 rounded-xl"
             style={{
               backgroundImage: `url(${
                 data != null && data.destinations[4].images?.image?.url
               })`,
             }}
           >
-            <div className="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl p-5 flex items-end text-white font-light text-sm">
+            <div className="flex items-end w-full h-full p-5 text-sm font-light text-white bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl">
               <div className="flex items-center gap-2">
                 <HiOutlineCamera className="text-base" /> Photo by Admin
               </div>
@@ -176,13 +190,13 @@ const Home = () => {
 
           {data?.destinations.slice(0, 4).map((dataDestination, key) => (
             <div
-              className="col-span-2 sm:col-span-1 h-72 bg-gray-400 rounded-xl bg-cover bg-center"
+              className="col-span-2 bg-gray-400 bg-center bg-cover sm:col-span-1 h-72 rounded-xl"
               style={{
                 backgroundImage: `url(${dataDestination?.images?.image?.url})`,
               }}
               key={key}
             >
-              <div className="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl p-5 flex items-end text-white font-light text-sm ">
+              <div className="flex items-end w-full h-full p-5 text-sm font-light text-white bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl ">
                 <div className="flex items-center gap-2">
                   <HiOutlineCamera className="text-base" /> Photo by Admin
                 </div>

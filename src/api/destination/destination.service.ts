@@ -49,13 +49,11 @@ export const getDestinations = async () => {
         title
       }
     }
-  `;
-  const data: ApiDataResponse<MapMetadataWrapper<DestinationData[]>> =
-    await graphQLClient.request(query);
-  return {
-    destinations: data.destinations,
-  } as unknown as MapMetadataWrapper<DestinationData[]>;
-};
+  }
+  `
+  const { destinations } = await graphQLClient.request(query) as ApiDataResponse<DestinationData[]>
+  return destinations
+}
 
 const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
   const query = gql`
