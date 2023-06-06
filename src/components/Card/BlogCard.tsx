@@ -12,7 +12,7 @@ const BlogCard: FC<BlogQueryData> = ({
 }) => {
   return (
     <div className="flex flex-col w-[315px] h-[530px] lg:w-[415px] lg:h-[630px]">
-      <h5 className="text-xl font-semibold lg:text-2xl font-poppins">
+      <h5 className="text-xl font-semibold lg:text-2xl font-poppins mb-5">
         {truncateTitle(title)}
       </h5>
       <div className="overflow-clip w-[313px] h-[286px] lg:w-[413px] lg:h-[386px] rounded-brand">
@@ -24,12 +24,12 @@ const BlogCard: FC<BlogQueryData> = ({
           height={image.image.height}
         />
       </div>
-      <p className="w-full mt-2 text-sm text-black font-poppins lg:text-md opacity-30">
+      <p className="w-full mt-2 text-sm text-black font-poppins lg:text-lg opacity-30">
         {truncateDescription(shortDescription)}
       </p>
       <Link
         href={`/blog/${slug}`}
-        className="flex text-sm font-bold text-transparent from-brand-gradient-top to-brand-gradient-down bg-gradient-to-br bg-clip-text lg:text-md"
+        className="flex text-sm font-bold text-transparent from-brand-gradient-top to-brand-gradient-down bg-gradient-to-br bg-clip-text lg:text-lg"
       >
         <p>Read Article -&gt;</p>
       </Link>

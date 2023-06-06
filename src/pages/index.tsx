@@ -23,12 +23,9 @@ import { DestinationData } from "@/interfaces/data.interfaces";
 const Map = dynamic(() => import("@/components/Map/oddysey"), { ssr: false });
 
 const Home = () => {
-  const { data, isLoading } = useQuery(
-    ["destinations"],
-    getDestinations
-  );
-  if(isLoading) {
-    return null
+  const { data, isLoading } = useQuery(["destinations"], getDestinations);
+  if (isLoading) {
+    return null;
   }
 
   return (
@@ -45,10 +42,10 @@ const Home = () => {
         <div className="h-full w-full sm:w-1/2 flex sm:items-center justify-end">
           <div className="w-full sm:w-[650px] h-full sm:h-[300px] md:h-[400px]">
             <Image
-              src={data.destinations[7].images.image.url}
+              src={data?.destinations[7].images.image.url}
               width={data?.destinations[7].images?.image?.width}
               height={data?.destinations[7].images?.image?.height}
-              style={{height: '100%', width: '100%', objectFit: 'cover'}}
+              style={{ height: "100%", width: "100%", objectFit: "cover" }}
               className="sm:rounded-l-3xl xl:rounded-3xl bg-stone-300"
               alt={"Headers"}
               priority
