@@ -24,7 +24,7 @@ const DestinationDetailBadge = ({
       >
         {Icon}
       </div>
-      <div>{children}</div>
+      <div className="text-sm md:text-base">{children}</div>
     </div>
   );
 };

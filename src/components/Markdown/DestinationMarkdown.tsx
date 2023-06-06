@@ -8,7 +8,12 @@ const DestinationMarkdown = ({ content, components }: any) => {
       rehypePlugins={[rehypeRaw]}
       remarkPlugins={[remarkBreaks]}
       components={{
-        p: (props) => <p className="font-poppins text-2xl pb-8" {...props} />,
+        p: (props) => (
+          <p
+            className="font-poppins md:text-lg text-base lg:text-2xl pb-8"
+            {...props}
+          />
+        ),
       }}
     >
       {content}

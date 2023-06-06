@@ -22,7 +22,7 @@ const DestinationMap = ({ href, lat, long }: PageProps) => {
         <div className="w-full h-full z-50 relative">
           <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center">
             <button
-              className="bg-black py-4 px-5 rounded-brand text-xl font-poppins font-bold"
+              className="bg-black py-4 px-5 rounded-brand text-sm md:text-md lg:text-xl font-poppins font-bold"
               // onClick={onClickNavigate}
             >
               <p className="text-transparent bg-clip-text bg-gradient-to-br from-[#FFD809] to-[#FD900C]">
@@ -30,7 +30,7 @@ const DestinationMap = ({ href, lat, long }: PageProps) => {
               </p>
             </button>
           </div>
-          <div className="relative h-[38rem] w-full -z-50">
+          <div className="relative lg:h-[38rem] h-[24rem] md:h-[28rem] w-full -z-50">
             <div className="flex items-center justify-center absolute top-0 left-0 w-full h-full z-40">
               <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40"></div>
             </div>

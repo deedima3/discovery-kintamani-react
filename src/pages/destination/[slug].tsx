@@ -2,6 +2,7 @@ import { getFirstBlogs } from "@/api/blog/blog.service";
 import destinationQueries from "@/api/destination/destination.service";
 import DestinationDetailBadge from "@/components/Badge/DestinationDetailBadge";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
+import NormalLayout from "@/components/Layout/NormalLayout";
 import DestinationMap from "@/components/Map/DestinationMap";
 import DestinationMarkdown from "@/components/Markdown/DestinationMarkdown";
 import { PageSEO } from "@/components/SEO/CommonSEO";
@@ -58,7 +59,7 @@ const Slug = ({ data, slug, blogs }: PageProps) => {
     <>
       <PageSEO title={data.title + " | Kintamani Discovery"} />
       <div className="container mx-auto text-black">
-        <div className="bg-white py-14">
+        <div className="bg-white py-6 md:py-10 lg:py-14">
           <Breadcrumb breadcrumbArray={breadCrumbsData} />
         </div>
         <div className="w-full relative">
@@ -79,10 +80,10 @@ const Slug = ({ data, slug, blogs }: PageProps) => {
         </div>
         <div>
           <div>
-            <h1 className="font-quicksand font-bold text-[44px] mt-[50px] mb-5">
+            <h1 className="font-quicksand font-bold md:text-4xl text-3xl lg:text-[44px] mt-[50px] mb-5">
               {data.title}
             </h1>
-            <div className="flex flex-row space-x-5 mb-[50px]">
+            <div className="flex flex-row space-x-5 mb-9 md:mb-[50px]">
               <DestinationDetailBadge
                 extendedClass="bg-black w-fit flex items-center justify-center"
                 iconSize={24}
@@ -116,21 +117,21 @@ const Slug = ({ data, slug, blogs }: PageProps) => {
               </DestinationDetailBadge>
             </div>
           </div>
-          <div className="mb-[50px] grid grid-cols-5 gap-[8rem] h-fit">
+          <div className="mb-[50px] grid md:grid-cols-5 gap-[8rem] h-fit">
             <div className="w-full col-span-3">
               <DestinationMarkdown content={data.description.markdown} />
             </div>
-            <div className="h-full" id="side-content">
+            <div className="h-full md:block hidden" id="side-content">
               <Sticky bottomBoundary={"#side-content"} top={32}>
                 <FeaturedBlogsSidebar blogs={blogs} />
               </Sticky>
             </div>
           </div>
           <div>
-            <h5 className="text-[2rem] font-bold font-quicksand">
+            <h5 className="text-xl md:text-2xl lg:text-[2rem] font-bold font-quicksand">
               Explore Map
             </h5>
-            <p className="font-poppins text-2xl opacity-50 mt-4 mb-[50px]">
+            <p className="font-poppins text-base md:text-lg lg:text-2xl opacity-50 sm:mt-2 md:mt-4 mb-8 md:mb-[50px]">
               Exploring Tourism Destinations with Map in Hand
             </p>
             <Map
@@ -144,12 +145,16 @@ const Slug = ({ data, slug, blogs }: PageProps) => {
               lat={data.coordinate.latitude}
             />
             <div className="mb-[100px] mt-8">
-              <h5 className="font-poppins text-2xl mb-5">Location</h5>
+              <h5 className="font-poppins text-xl md:text-2xl mb-5">
+                Location
+              </h5>
               <div className="flex flex-row space-x-2 items-center font-poppins">
                 <div className="text-white bg-black w-fit h-auto rounded-full p-[0.3rem]">
                   <HiOutlineMap size={20} />
                 </div>
-                <p className="text-xl m-0 block">{data.location}</p>
+                <p className="text-base md:text-xl m-0 block">
+                  {data.location}
+                </p>
               </div>
             </div>
           </div>
@@ -159,6 +164,9 @@ const Slug = ({ data, slug, blogs }: PageProps) => {
   );
 };
 
+Slug.getLayout = function getLayout(page: React.ReactNode) {
+  return <NormalLayout pageTitle="slug">{page}</NormalLayout>;
+};
 // export async function getServerSideProps(context: GetServerSidePropsContext) {
 //   const { query } = context;
 //   const destinations = await destinationQueries.getAllDestinationsSlug();
