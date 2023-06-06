@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import Navbar from "../Header/Navbar";
+import Footer from "../Footer/Footer";
 
 // TODO : Add Navbar and Footer
 
@@ -13,6 +14,7 @@ const NormalLayout: FC<NormalLayoutProps> = ({ children, pageTitle }) => {
     <>
       <Navbar/>
       <div className="w-full mx-auto max-w-screen-2xl bg-white">{children}</div>
+      <Footer/>
     </>
   );
 };
