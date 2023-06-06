@@ -5,6 +5,7 @@ import Breadcrumb, {
 import BlogCard from "@/components/Card/BlogCard";
 import NormalLayout from "@/components/Layout/NormalLayout";
 import CustomPagination from "@/components/Pagination/CustomPagination";
+import { PageSEO } from "@/components/SEO/CommonSEO";
 import SearchBar from "@/components/Search/SearchBar";
 import BlogCardSkeleton from "@/components/Skeleton/BlogCardSkeleton";
 import SearchPageTitle from "@/components/Title/SearchPageTitle";
@@ -34,40 +35,43 @@ const Blog = () => {
   });
 
   return (
-    <section className="flex flex-col w-full gap-5">
-      <Breadcrumb breadcrumbArray={breadcrumbs} />
-      <SearchPageTitle
-        title={"The Adventurer`s Guide"}
-        subtitle={"A Blog of Boundless Travel and Tourism Experience"}
-      >
-        <SearchBar
-          search={search}
-          setSearch={setSearch}
-          placeholder={"Search Blog"}
-        />
-      </SearchPageTitle>
-      <div className="flex flex-wrap justify-center w-full lg:justify-between">
-        {isLoading ? (
-          <>
-            <BlogCardSkeleton />
-            <BlogCardSkeleton />
-            <BlogCardSkeleton />
-          </>
-        ) : (
-          data &&
-          data.data.map((blogData) => {
-            return <BlogCard {...blogData} key={blogData.slug} />;
-          })
-        )}
-      </div>
-      <div className="flex justify-center w-full text-black">
-        <CustomPagination
-          maxPage={maxPage}
-          currentPage={currentPage}
-          setPage={setPage}
-        />
-      </div>
-    </section>
+    <>
+      <PageSEO title="Blogs | Find some awesome srticles that covers about Kintamani" />
+      <section className="flex flex-col w-full gap-5">
+        <Breadcrumb breadcrumbArray={breadcrumbs} />
+        <SearchPageTitle
+          title={"The Adventurer`s Guide"}
+          subtitle={"A Blog of Boundless Travel and Tourism Experience"}
+        >
+          <SearchBar
+            search={search}
+            setSearch={setSearch}
+            placeholder={"Search Blog"}
+          />
+        </SearchPageTitle>
+        <div className="flex flex-wrap justify-center w-full lg:justify-between">
+          {isLoading ? (
+            <>
+              <BlogCardSkeleton />
+              <BlogCardSkeleton />
+              <BlogCardSkeleton />
+            </>
+          ) : (
+            data &&
+            data.data.map((blogData) => {
+              return <BlogCard {...blogData} key={blogData.slug} />;
+            })
+          )}
+        </div>
+        <div className="flex justify-center w-full text-black">
+          <CustomPagination
+            maxPage={maxPage}
+            currentPage={currentPage}
+            setPage={setPage}
+          />
+        </div>
+      </section>
+    </>
   );
 };
 
