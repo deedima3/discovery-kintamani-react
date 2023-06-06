@@ -97,3 +97,16 @@ export interface FeaturedBlogData {
 export interface FeaturedBlogsWrapper<T> {
   blogs: T;
 }
+
+export interface MapMetadataWrapper<T> {
+  destinations: T;
+}
+
+export interface MapMetadata {
+  title: string;
+  shortDescription: string;
+  location: string;
+  category: string;
+  coordinate: CoordinateLngLat;
+  images: GraphCMSImage;
+}
