@@ -40,7 +40,10 @@ const Home = ({ destinations }: PageProps) => {
   return (
     <div className="bg-white text-stone-800">
       <section className="flex flex-col w-full h-screen gap-10 pt-36 lg:pt-0 sm:flex-row md:gap-0">
-        <div className="flex flex-col justify-center w-full gap-5 sm:w-1/2">
+        <div
+          className="flex flex-col justify-center w-full gap-5 sm:w-1/2"
+          data-aos="fade-right"
+        >
           <h1 className="text-5xl text-stone-800 font-quicksand font-semibold leading-[58px]">
             Exploring Bali`s <br /> Highland Treasures
           </h1>
@@ -48,7 +51,10 @@ const Home = ({ destinations }: PageProps) => {
             Discover the Enchanting Secrets of Kintamani
           </p>
         </div>
-        <div className="flex justify-end w-full h-full sm:w-1/2 sm:items-center">
+        <div
+          className="flex justify-end w-full h-full sm:w-1/2 sm:items-center"
+          data-aos="fade-left"
+        >
           <div className="w-full sm:w-[650px] h-full sm:h-[300px] md:h-[400px]">
             {destinations[7].images && (
               <Image
@@ -71,7 +77,10 @@ const Home = ({ destinations }: PageProps) => {
         </div>
       </section>
 
-      <section className="flex flex-col w-full gap-12 pb-12 mt-20">
+      <section
+        className="flex flex-col w-full gap-12 pb-12 mt-20"
+        data-aos="fade-up"
+      >
         <div className="text-center">
           <h1 className="text-4xl font-quicksand font-semibold mb-2.5">
             Destination Treasures
@@ -138,11 +147,17 @@ const Home = ({ destinations }: PageProps) => {
 
       <section className="flex flex-col items-center w-full gap-6 mt-20 sm:flex-row sm:gap-0">
         <div className="w-full sm:w-1/2 h-[45vh] sm:h-[509px]">
-          <div className="w-full h-full overflow-hidden sm:w-11/12 bg-stone-300 sm:rounded-r-2xl lg:rounded-2xl">
+          <div
+            className="w-full h-full overflow-hidden sm:w-11/12 bg-stone-300 sm:rounded-r-2xl lg:rounded-2xl"
+            data-aos="fade-right"
+          >
             <Map />
           </div>
         </div>
-        <div className="text-center sm:pl-20 lg:pl-32 sm:w-1/2 sm:text-left">
+        <div
+          className="text-center sm:pl-20 lg:pl-32 sm:w-1/2 sm:text-left"
+          data-aos="fade-left"
+        >
           <h1 className="w-full mb-5 text-3xl font-bold font-quicksand">
             Interactive Map Odyssey
           </h1>
@@ -159,7 +174,7 @@ const Home = ({ destinations }: PageProps) => {
         </div>
       </section>
 
-      <section className="flex flex-col w-full gap-12 py-28">
+      <section className="flex flex-col w-full gap-12 py-28" data-aos="fade-up">
         <div className="text-center">
           <h1 className="text-4xl font-quicksand font-semibold mb-2.5">
             Visual Delights of Kintamani

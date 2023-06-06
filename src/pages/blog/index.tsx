@@ -42,7 +42,7 @@ const Blog = () => {
   return (
     <>
       <PageSEO title="Blogs | Find some awesome articles that covers about Kintamani" />
-      <section className="flex flex-col w-full gap-[50px]">
+      <section className="flex flex-col w-full gap-[50px] mt-[50px]">
         <Breadcrumb breadcrumbArray={breadcrumbs} />
         <SearchPageTitle
           title={"The Adventurer`s Guide"}

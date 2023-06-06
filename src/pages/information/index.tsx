@@ -23,7 +23,7 @@ const breadcrumbs: BreadcrumbData[] = [
   {
     route: "/information",
     label: "Information",
-    isBold: true,
+    isBold: false,
   },
   {
     route: `/information`,
@@ -85,10 +85,10 @@ const Information = ({ otherBlog }: InformationApi) => {
     <>
       <PageSEO title="Information" />
       <div className="flex flex-col">
-        <div className="w-full px-2 mx-auto max-w-screen-2xl">
+        <div className="w-full px-2 mx-auto max-w-screen-2xl py-[50px]">
           <Breadcrumb breadcrumbArray={breadcrumbs} />
         </div>
-        <div className="w-full px-2 mx-auto max-w-screen-2xl">
+        <div className="w-full px-2 mx-auto max-w-screen-2xl pb-[50px]">
           <SearchPageTitle
             title="Kintamani Revealed"
             subtitle="Essential infomation for an Unforgettable Kintamani Highlang Experience"
@@ -96,7 +96,10 @@ const Information = ({ otherBlog }: InformationApi) => {
         </div>
         <FullScreenBlogImage image={image} />
         <div className="flex flex-col w-full gap-20 px-2 mx-auto mt-16 max-w-screen-2xl">
-          <div className="flex flex-col items-center justify-between w-full md:flex-row">
+          <div
+            className="flex flex-col items-center justify-between w-full md:flex-row"
+            data-aos="fade-left"
+          >
             <div className="w-full sm:w-1/2 h-[45vh] sm:h-[509px]">
               <div className="w-full h-full overflow-hidden sm:w-11/12 bg-stone-300 sm:rounded-r-2xl lg:rounded-2xl">
                 <Map />
@@ -107,34 +110,41 @@ const Information = ({ otherBlog }: InformationApi) => {
               text="Embark on a scenic adventure from Denpasar to Kintamani, covering 53 kilometers in just 1 hour and 37 minutes. Traverse winding roads and immerse yourself in the captivating landscapes as you journey towards the awe-inspiring beauty of Kintamani"
             />
           </div>
-          {informationData.map(
-            ({ title, text, subtext, src, reverse = false }, index) => {
-              return (
-                <div
-                  className={`flex items-center justify-between w-full gap-20 flex-col md:flex-row ${
-                    reverse ? "flex-row-reverse" : ""
-                  }`}
-                  key={index}
-                >
-                  <InformationImage src={src} />
-                  <InformationTextBlock
-                    title={title}
-                    text={text}
-                    subtext={subtext}
-                  />
-                </div>
-              );
-            }
-          )}
+          <div className="md:grid md:grid-flow-row md:gap-[150px]">
+            {informationData.map(
+              ({ title, text, subtext, src, reverse = false }, index) => {
+                return (
+                  <div
+                    className={`flex items-center justify-between w-full gap-20 flex-col md:flex-row ${
+                      reverse ? "md:flex-row-reverse" : ""
+                    }`}
+                    key={index}
+                    data-aos={reverse ? "fade-right" : "fade-left"}
+                  >
+                    <InformationImage src={src} />
+                    <InformationTextBlock
+                      title={title}
+                      text={text}
+                      subtext={subtext}
+                    />
+                  </div>
+                );
+              }
+            )}
+          </div>
         </div>
         <section
           aria-label="other-blog-post"
           className="w-full px-2 mx-auto mt-10 max-w-screen-2xl"
+          data-aos="fade-up"
         >
-          <h3 className="text-2xl font-bold md:text-4xl font-quicksand">
-            You may also like
+          <h3 className="text-2xl font-bold md:text-4xl font-quicksand mt-[150px]">
+            Get Inspired
           </h3>
-          <div className="flex flex-wrap justify-center w-full gap-2 mt-10 lg:justify-between">
+          <p className="font-poppins text-opacity-50 text-black md:text-2xl text-lg pt-3">
+            You might also be interested in these articles.
+          </p>
+          <div className="flex flex-wrap justify-center w-full gap-2 mt-[50px] lg:justify-between mb-[150px]">
             {otherBlog.map((blogData) => {
               return <BlogCard {...blogData} key={blogData.slug} />;
             })}
