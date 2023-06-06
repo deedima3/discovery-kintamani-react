@@ -14,7 +14,7 @@ const FullScreenBlogImage = ({
   },
 }: FullScreenBlogImageProps) => {
   return (
-    <div className="w-full h-[350px] lg:h-[752px]">
+    <div className="w-full h-[350px] lg:h-[752px] mt-5">
       <Image
         className="object-cover w-full h-full"
         width={width}
