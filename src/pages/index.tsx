@@ -15,6 +15,9 @@ import { GiBinoculars, GiGreekTemple, GiHourglass } from "react-icons/gi";
 
 import { useQuery } from "@tanstack/react-query";
 import { getDestinations } from "@/api/destination/destination.service";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import("@/components/Map/oddysey"), { ssr: false })
 
 const Home = () => {
   const { data, error, isLoading } = useQuery(
@@ -29,12 +32,12 @@ const Home = () => {
           <h1 className="text-5xl text-stone-800 font-quicksand font-semibold leading-[58px]">
             Exploring Bali's <br /> Highland Treasures
           </h1>
-          <p className="text-xl text-gray-400 font-light">
+          <p className="text-xl text-gray-400 font-light pr-14">
             Discover the Enchanting Secrets of Kintamani
           </p>
         </div>
         <div className="h-full w-full sm:w-1/2 flex sm:items-center justify-end">
-          <div className="w-full sm:w-[650px] h-full sm:h-[300px] lg:h-[400px] relative">
+          <div className="w-full sm:w-[650px] h-full sm:h-[300px] md:h-[400px] relative">
             <Image
               src="https://images.unsplash.com/photo-1551212040-47117df00603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2874&q=80"
               alt={"Headers"}
@@ -105,10 +108,10 @@ const Home = () => {
                     destinationData.category == "history" && (
                       <GiHourglass className="bg-gradient-to-tr from-purple-400 to-red-400 rounded-xl p-1 text-2xl text-white " />
                     )
-                  )}{" "}
+                  )}
                   {destinationData?.category}
                 </div>
-              </div>{" "}
+              </div>
               <h2 className=" text-2xl font-bold font-quicksand">
                 {destinationData?.title}
               </h2>
@@ -118,7 +121,11 @@ const Home = () => {
       </section>
 
       <section className="w-full flex flex-col sm:flex-row items-center mt-20 gap-6 sm:gap-0">
-        <div className="w-full sm:w-1/2 h-[45vh] sm:h-[509px] bg-stone-300 sm:rounded-r-2xl lg:rounded-2xl" />
+        <div className="w-full sm:w-1/2 h-[45vh] sm:h-[509px]">
+          <div className="w-full sm:w-11/12 h-full bg-stone-300 sm:rounded-r-2xl lg:rounded-2xl overflow-hidden">
+            <Map/>
+          </div>
+        </div>
         <div className="sm:pl-20 lg:pl-32 sm:w-1/2 text-center sm:text-left">
           <h1 className="w-full text-3xl font-quicksand font-bold mb-5">
             Interactive Map Odyssey
