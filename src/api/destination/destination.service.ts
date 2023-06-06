@@ -1,12 +1,16 @@
 import {
   DestinationQueryData,
   PaginatedQueryParams,
+  Destination,
+  DestinationResponse,
+  DestinationData,
 } from "@/interfaces/data.interfaces";
 import {
   ApiDataResponse,
   ApiNodeResponse,
   ApiPaginatedResponse,
   PaginatedDataWithMeta,
+  ApiSlugsResponse,
 } from "@/interfaces/graphcms.interfaces";
 import { graphQLClient } from "@/utils/query";
 import { gql } from "graphql-request";
@@ -42,6 +46,9 @@ const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
           hasPreviousPage
           pageSize
         }
+        aggregate {
+          count
+        }
       }
     }
   `;
@@ -54,16 +61,16 @@ const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
   )) as ApiDataResponse<
     ApiPaginatedResponse<ApiNodeResponse<DestinationQueryData>[]>
   >;
-  console.log(destinationsConnection);
   return {
     data: destinationsConnection.edges.map((destinationData) => {
       return destinationData.node;
     }),
     meta: destinationsConnection.pageInfo,
+    aggregate: destinationsConnection.aggregate,
   } as unknown as PaginatedDataWithMeta<DestinationQueryData[]>;
 };
 
-const getDestinationById = async (slug: string) => {
+const getDestinationBySlug = async (slug: any) => {
   const query = gql`
     query GetDestinationById($slug: String) {
       destination(where: { slug: $slug }) {
@@ -71,7 +78,10 @@ const getDestinationById = async (slug: string) => {
           ... on Image {
             image {
               url
+              width
+              height
             }
+            alt
           }
         }
         title
@@ -86,16 +96,37 @@ const getDestinationById = async (slug: string) => {
           latitude
           longitude
         }
+        category
       }
     }
   `;
 
-  const data = await graphQLClient.request(query, { slug: slug });
-  console.log(data);
+  const { destination }: DestinationResponse<DestinationData> =
+    await graphQLClient.request(query, { slug: slug });
+  return {
+    data: destination,
+  } as unknown as ApiDataResponse<DestinationData>;
+};
+
+const getAllDestinationsSlug = async () => {
+  const query = gql`
+    query MyQuery {
+      destinations {
+        slug
+      }
+    }
+  `;
+  const { destinations }: ApiDataResponse<ApiSlugsResponse<Destination>[]> =
+    await graphQLClient.request(query);
+  return {
+    data: destinations,
+  } as unknown as ApiDataResponse<Destination[]>;
 };
 
 const destinationQueries = {
   getAllDestinationPaginated,
+  getDestinationBySlug,
+  getAllDestinationsSlug,
 };
 
 export default destinationQueries;

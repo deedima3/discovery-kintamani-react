@@ -1,4 +1,4 @@
-import { Blog, BlogQueryData, PaginatedQueryParams } from "@/interfaces/data.interfaces"
+import { Blog, BlogQueryData, FeaturedBlogData, FeaturedBlogsWrapper, PaginatedQueryParams } from "@/interfaces/data.interfaces"
 import { ApiDataResponse, ApiNodeResponse, ApiPaginatedResponse, ApiResponse, PaginatedDataWithMeta } from "@/interfaces/graphcms.interfaces"
 import { graphQLClient } from "@/utils/query"
 import { gql } from "graphql-request"
@@ -63,6 +63,9 @@ export const getAllBlogPaginated = async (queryParams: PaginatedQueryParams) => 
                         hasNextPage
                         hasPreviousPage
                         pageSize
+                    }
+                    aggregate {
+                      count
                     }
                     edges {
                     node {
@@ -131,3 +134,28 @@ export const getAllBlogSlug = async () => {
     const { blogs } = await graphQLClient.request(query) as ApiDataResponse<{ slug: string }[]>
     return blogs
 }
+
+export const getFirstBlogs = async (limit: number) => {
+  const query = gql`
+    query MyQuery($limit: Int) {
+      blogs(first: $limit) {
+        slug
+        title
+        image {
+          alt
+          image {
+            width
+            url
+            height
+          }
+        }
+      }
+    }
+  `;
+  const data = (await graphQLClient.request(query, {
+    limit: limit,
+  })) as ApiDataResponse<FeaturedBlogsWrapper<FeaturedBlogData>[]>;
+  return {
+    blogs: data.blogs,
+  } as unknown as FeaturedBlogsWrapper<FeaturedBlogData[]>;
+};
