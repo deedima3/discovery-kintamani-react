@@ -6,7 +6,6 @@ import {
   ApiDataResponse,
   ApiNodeResponse,
   ApiPaginatedResponse,
-  ApiResponse,
   PaginatedDataWithMeta,
 } from "@/interfaces/graphcms.interfaces";
 import { graphQLClient } from "@/utils/query";
