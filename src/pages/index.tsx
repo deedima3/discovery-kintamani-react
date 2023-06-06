@@ -22,10 +22,13 @@ import { CATEGORY_VALUE } from "@/utils/constant";
 const Map = dynamic(() => import("@/components/Map/oddysey"), { ssr: false })
 
 const Home = () => {
-  const { data, error, isLoading } = useQuery(
+  const { data, isLoading } = useQuery(
     ["destinations"],
     getDestinations
   );
+  if(isLoading) {
+    return null
+  }
 
   return (
     <div className="bg-white text-stone-800">
@@ -41,12 +44,12 @@ const Home = () => {
         <div className="h-full w-full sm:w-1/2 flex sm:items-center justify-end">
           <div className="w-full sm:w-[650px] h-full sm:h-[300px] md:h-[400px]">
             <Image
-              src="https://images.unsplash.com/photo-1551212040-47117df00603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MTR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
-              alt={"Headers"}
-              width={300}
-              height={300}
-              style={{width: '100%', height: '100%'}}
+              src={data[7].images?.image?.url}
+              width={data[7].images?.image?.width}
+              height={data[7].images?.image?.height}
+              style={{height: '100%', width: '100%', objectFit: 'cover'}}
               className="sm:rounded-l-3xl xl:rounded-3xl bg-stone-300"
+              alt={"Headers"}
               priority
             />
           </div>
