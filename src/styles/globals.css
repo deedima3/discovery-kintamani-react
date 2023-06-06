@@ -145,6 +145,58 @@ body {
   background: -webkit-linear-gradient(310deg, #FFD809, #FD900C);
 }
 
-.icon-active {
-  
+.gradient-text{
+  background: -webkit-linear-gradient(310deg, #FFD809, #FD900C);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+/*     transform: rotate(90deg); */
+  cursor: pointer;
+}
+
+.arrow span {
+  @apply w-3 h-3;
+  display: none;
+  border-bottom: 3px solid #55555571;
+  border-right: 3px solid #55555571;
+  border-radius: 10%;
+  transform: rotate(90deg);
+  margin: -20px;
+  animation: animate 2s infinite;
+}
+
+.arrow span:nth-child(2) {
+  animation-delay: -0.2s;
+}
+
+.arrow span:nth-child(3) {
+  animation-delay: -0.4s;
+}
+
+@media screen and (min-width: 640px) {
+  .arrow span {
+    display: block;
+  }
+}
+
+@keyframes animate {
+  0% {
+      opacity: 0;
+      transform: rotate(45deg) translate(-25px, -25px);
+  }
+  50% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+      transform: rotate(45deg) translate(20px, 20px);
+  }
 }
