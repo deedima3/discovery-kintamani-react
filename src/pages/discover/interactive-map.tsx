@@ -2,6 +2,7 @@ import mapQueries from "@/api/discover/map.service";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import NormalLayout from "@/components/Layout/NormalLayout";
 import UnborderedLayout from "@/components/Layout/UnborderedLayout";
+import { PageSEO } from "@/components/SEO/CommonSEO";
 import { MapMetadata, MapMetadataWrapper } from "@/interfaces/data.interfaces";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
@@ -43,7 +44,10 @@ const InteractiveMapPage = () => {
 
 InteractiveMapPage.getLayout = function getLayout(page: React.ReactNode) {
   return (
-    <UnborderedLayout pageTitle="Interactive Map">{page}</UnborderedLayout>
+    <>
+      <PageSEO title="Interactive Maps | Play around with google maps alike map" />
+      <UnborderedLayout pageTitle="Interactive Map">{page}</UnborderedLayout>
+    </>
   );
 };
 export default InteractiveMapPage;

@@ -4,6 +4,7 @@ import DestinationDetailBadge from "@/components/Badge/DestinationDetailBadge";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import DestinationMap from "@/components/Map/DestinationMap";
 import DestinationMarkdown from "@/components/Markdown/DestinationMarkdown";
+import { PageSEO } from "@/components/SEO/CommonSEO";
 import FeaturedBlogsSidebar from "@/components/Sidebar/FeaturedBlogsSidebar";
 import {
   DestinationData,
@@ -54,96 +55,107 @@ const Slug = ({ data, slug, blogs }: PageProps) => {
     ssr: false,
   });
   return (
-    <div className="container mx-auto text-black">
-      <div className="bg-white py-14">
-        <Breadcrumb breadcrumbArray={breadCrumbsData} />
-      </div>
-      <div className="w-full relative">
-        <AspectRatio.Root ratio={20 / 9} className="overflow-hidden grid">
-          <Image
-            alt={data.images.alt ? data.images.alt : "image"}
-            src={data.images.image.url}
-            // width={data.images.image.width}
-            // height={data.images.image.height}
-            priority
-            sizes="100%"
-            className="object-cover w-full rounded-brand"
-            fill
-          />
-        </AspectRatio.Root>
-      </div>
-      <div>
-        <div>
-          <h1 className="font-quicksand font-bold text-[44px] mt-[50px] mb-5">
-            {data.title}
-          </h1>
-          <div className="flex flex-row space-x-5 mb-[50px]">
-            <DestinationDetailBadge
-              extendedClass="bg-black w-fit flex items-center justify-center"
-              iconSize={24}
-              Icon={
-                <IconContext.Provider value={{ size: "24px", color: "white" }}>
-                  <FiClock />
-                </IconContext.Provider>
-              }
-            >
-              {data.alwaysOpen
-                ? "Open 24 Hours"
-                : "Open from " + data.openTime + " until " + data.closeTime}
-            </DestinationDetailBadge>
-            <DestinationDetailBadge
-              extendedClass={
-                "w-fit flex items-center justify-center bg-linear-" +
-                CATEGORY_LINEAR_COLOR[data.category]
-              }
-              iconSize={24}
-              Icon={
-                <IconContext.Provider value={{ size: "24px", color: "white" }}>
-                  <FiClock />
-                </IconContext.Provider>
-              }
-            >
-              {CATEGORY_VALUE[data.category]}
-            </DestinationDetailBadge>
-          </div>
+    <>
+      <PageSEO title={data.title + " | Kintamani Discovery"} />
+      <div className="container mx-auto text-black">
+        <div className="bg-white py-14">
+          <Breadcrumb breadcrumbArray={breadCrumbsData} />
         </div>
-        <div className="mb-[50px] grid grid-cols-5 gap-[8rem] h-fit">
-          <div className="w-full col-span-3">
-            <DestinationMarkdown content={data.description.markdown} />
-          </div>
-          <div className="h-full" id="side-content">
-            <Sticky bottomBoundary={"#side-content"} top={32}>
-              <FeaturedBlogsSidebar blogs={blogs} />
-            </Sticky>
-          </div>
+        <div className="w-full relative">
+          <AspectRatio.Root ratio={20 / 9} className="overflow-hidden grid">
+            <Image
+              alt={data.images.alt ? data.images.alt : "image"}
+              src={data.images.image.url}
+              placeholder="blur"
+              blurDataURL="https://placehold.co/600x400.png"
+              // width={data.images.image.width}
+              // height={data.images.image.height}
+              priority
+              sizes="100%"
+              className="object-cover w-full rounded-brand"
+              fill
+            />
+          </AspectRatio.Root>
         </div>
         <div>
-          <h5 className="text-[2rem] font-bold font-quicksand">Explore Map</h5>
-          <p className="font-poppins text-2xl opacity-50 mt-4 mb-[50px]">
-            Exploring Tourism Destinations with Map in Hand
-          </p>
-          <Map
-            href={
-              "http://www.google.com/maps/place/" +
-              data.coordinate.latitude +
-              "," +
-              data.coordinate.longitude
-            }
-            long={data.coordinate.longitude}
-            lat={data.coordinate.latitude}
-          />
-          <div className="mb-[100px] mt-8">
-            <h5 className="font-poppins text-2xl mb-5">Location</h5>
-            <div className="flex flex-row space-x-2 items-center font-poppins">
-              <div className="text-white bg-black w-fit h-auto rounded-full p-[0.3rem]">
-                <HiOutlineMap size={20} />
+          <div>
+            <h1 className="font-quicksand font-bold text-[44px] mt-[50px] mb-5">
+              {data.title}
+            </h1>
+            <div className="flex flex-row space-x-5 mb-[50px]">
+              <DestinationDetailBadge
+                extendedClass="bg-black w-fit flex items-center justify-center"
+                iconSize={24}
+                Icon={
+                  <IconContext.Provider
+                    value={{ size: "24px", color: "white" }}
+                  >
+                    <FiClock />
+                  </IconContext.Provider>
+                }
+              >
+                {data.alwaysOpen
+                  ? "Open 24 Hours"
+                  : "Open from " + data.openTime + " until " + data.closeTime}
+              </DestinationDetailBadge>
+              <DestinationDetailBadge
+                extendedClass={
+                  "w-fit flex items-center justify-center bg-linear-" +
+                  CATEGORY_LINEAR_COLOR[data.category]
+                }
+                iconSize={24}
+                Icon={
+                  <IconContext.Provider
+                    value={{ size: "24px", color: "white" }}
+                  >
+                    <FiClock />
+                  </IconContext.Provider>
+                }
+              >
+                {CATEGORY_VALUE[data.category]}
+              </DestinationDetailBadge>
+            </div>
+          </div>
+          <div className="mb-[50px] grid grid-cols-5 gap-[8rem] h-fit">
+            <div className="w-full col-span-3">
+              <DestinationMarkdown content={data.description.markdown} />
+            </div>
+            <div className="h-full" id="side-content">
+              <Sticky bottomBoundary={"#side-content"} top={32}>
+                <FeaturedBlogsSidebar blogs={blogs} />
+              </Sticky>
+            </div>
+          </div>
+          <div>
+            <h5 className="text-[2rem] font-bold font-quicksand">
+              Explore Map
+            </h5>
+            <p className="font-poppins text-2xl opacity-50 mt-4 mb-[50px]">
+              Exploring Tourism Destinations with Map in Hand
+            </p>
+            <Map
+              href={
+                "http://www.google.com/maps/place/" +
+                data.coordinate.latitude +
+                "," +
+                data.coordinate.longitude
+              }
+              long={data.coordinate.longitude}
+              lat={data.coordinate.latitude}
+            />
+            <div className="mb-[100px] mt-8">
+              <h5 className="font-poppins text-2xl mb-5">Location</h5>
+              <div className="flex flex-row space-x-2 items-center font-poppins">
+                <div className="text-white bg-black w-fit h-auto rounded-full p-[0.3rem]">
+                  <HiOutlineMap size={20} />
+                </div>
+                <p className="text-xl m-0 block">{data.location}</p>
               </div>
-              <p className="text-xl m-0 block">{data.location}</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -24,6 +24,8 @@ const DestinationCard: FC<DestinationQueryData> = ({
           fill
           sizes="100%"
           priority
+          placeholder="blur"
+          blurDataURL="https://placehold.co/600x400.png"
           // width={images.image.width}
           // height={images.image.height}
           // placeholder="blur"
