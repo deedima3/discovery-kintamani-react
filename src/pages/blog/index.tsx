@@ -12,14 +12,15 @@ import { useQuerySearchPaginated } from "@/hooks/useQuerySearchPaginated";
 import { BlogQueryData } from "@/interfaces/data.interfaces";
 import React, { ReactElement, useState } from "react";
 
+const breadcrumbs: BreadcrumbData[] = [
+  {
+    route: "/blog",
+    label: "Blog",
+    isBold: true,
+  },
+];
+
 const Blog = () => {
-  const breadcrumbs: BreadcrumbData[] = [
-    {
-      route: "/blog",
-      label: "Blog",
-      isBold: true,
-    },
-  ];
   const [search, setSearch] = useState<string>("");
 
   const {
@@ -44,7 +45,7 @@ const Blog = () => {
           placeholder={"Search Blog"}
         />
       </SearchPageTitle>
-      <div className="flex flex-wrap justify-between w-full">
+      <div className="flex flex-wrap justify-center w-full lg:justify-between">
         {isLoading ? (
           <>
             <BlogCardSkeleton />

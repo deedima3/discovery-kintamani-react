@@ -1,9 +1,8 @@
 import { Blog, BlogQueryData } from "@/interfaces/data.interfaces";
-import * as AspectRatio from "@radix-ui/react-aspect-ratio";
 import React, { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { truncateDescription } from "@/utils/format";
+import { truncateDescription, truncateTitle } from "@/utils/format";
 
 const BlogCard: FC<BlogQueryData> = ({
   title,
@@ -12,26 +11,25 @@ const BlogCard: FC<BlogQueryData> = ({
   shortDescription,
 }) => {
   return (
-    <div className="flex flex-col w-[415px] h-[630px]">
-      <h5 className="text-2xl font-semibold font-poppins">{title}</h5>
-      <AspectRatio.Root
-        ratio={1 / 1}
-        className="mt-2 overflow-clip rounded-brand"
-      >
+    <div className="flex flex-col w-[315px] h-[530px] lg:w-[415px] lg:h-[630px]">
+      <h5 className="text-xl font-semibold lg:text-2xl font-poppins">
+        {truncateTitle(title)}
+      </h5>
+      <div className="overflow-clip w-[313px] h-[286px] lg:w-[413px] lg:h-[386px] rounded-brand">
         <Image
           src={image.image.url}
           alt={image.alt}
-          className="object-cover w-full"
+          className="object-cover w-full h-full"
           width={image.image.width}
           height={image.image.height}
         />
-      </AspectRatio.Root>
-      <p className="w-full mt-2 text-black font-poppins text-md opacity-30">
+      </div>
+      <p className="w-full mt-2 text-sm text-black font-poppins lg:text-md opacity-30">
         {truncateDescription(shortDescription)}
       </p>
       <Link
         href={`/blog/${slug}`}
-        className="flex font-bold text-transparent from-brand-gradient-top to-brand-gradient-down bg-gradient-to-br bg-clip-text"
+        className="flex text-sm font-bold text-transparent from-brand-gradient-top to-brand-gradient-down bg-gradient-to-br bg-clip-text lg:text-md"
       >
         <p>Read Article -&gt;</p>
       </Link>
