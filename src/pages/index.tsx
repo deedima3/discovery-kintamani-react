@@ -16,14 +16,20 @@ import { GiBinoculars, GiGreekTemple, GiHourglass } from "react-icons/gi";
 import { useQuery } from "@tanstack/react-query";
 import { getDestinations } from "@/api/destination/destination.service";
 import dynamic from "next/dynamic";
+import { PageSEO } from "@/components/SEO/CommonSEO";
+import { CATEGORY_VALUE } from "@/utils/constant";
+import { DestinationData } from "@/interfaces/data.interfaces";
 
-const Map = dynamic(() => import("@/components/Map/oddysey"), { ssr: false })
+const Map = dynamic(() => import("@/components/Map/oddysey"), { ssr: false });
 
 const Home = () => {
-  const { data, error, isLoading } = useQuery(
+  const { data, isLoading } = useQuery(
     ["destinations"],
     getDestinations
   );
+  if(isLoading) {
+    return null
+  }
 
   return (
     <div className="bg-white text-stone-800">
@@ -39,12 +45,12 @@ const Home = () => {
         <div className="h-full w-full sm:w-1/2 flex sm:items-center justify-end">
           <div className="w-full sm:w-[650px] h-full sm:h-[300px] md:h-[400px]">
             <Image
-              src="https://images.unsplash.com/photo-1551212040-47117df00603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MTR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
-              alt={"Headers"}
-              width={300}
-              height={300}
-              style={{width: '100%', height: '100%'}}
+              src={data.destinations[7].images.image.url}
+              width={data?.destinations[7].images?.image?.width}
+              height={data?.destinations[7].images?.image?.height}
+              style={{height: '100%', width: '100%', objectFit: 'cover'}}
               className="sm:rounded-l-3xl xl:rounded-3xl bg-stone-300"
+              alt={"Headers"}
               priority
             />
           </div>
@@ -84,14 +90,14 @@ const Home = () => {
           modules={[FreeMode]}
           className="mySwiper w-full cursor-pointer"
         >
-          {data?.map((destinationData, key) => (
+          {data?.destinations.map((destinationData: DestinationData, key) => (
             <SwiperSlide className="flex flex-col" key={key}>
               <div className="w-full h-72 mb-2">
                 <Image
                   src={destinationData?.images?.image?.url}
-                  width={0}
-                  height={0}
-                  style={{height: '100%', width: '100%'}}
+                  width={destinationData?.images?.image?.width}
+                  height={destinationData?.images?.image?.height}
+                  style={{ height: "100%", width: "100%", objectFit: "cover" }}
                   alt={destinationData?.images?.alt}
                   className="rounded-2xl bg-stone-300"
                 />{" "}
@@ -111,7 +117,7 @@ const Home = () => {
                       <GiHourglass className="bg-gradient-to-tr from-purple-400 to-red-400 rounded-xl p-1 text-2xl text-white " />
                     )
                   )}
-                  {destinationData?.category}
+                  {CATEGORY_VALUE[destinationData?.category]}
                 </div>
               </div>
               <h2 className=" text-2xl font-bold font-quicksand">
@@ -125,7 +131,7 @@ const Home = () => {
       <section className="w-full flex flex-col sm:flex-row items-center mt-20 gap-6 sm:gap-0">
         <div className="w-full sm:w-1/2 h-[45vh] sm:h-[509px]">
           <div className="w-full sm:w-11/12 h-full bg-stone-300 sm:rounded-r-2xl lg:rounded-2xl overflow-hidden">
-            <Map/>
+            <Map />
           </div>
         </div>
         <div className="sm:pl-20 lg:pl-32 sm:w-1/2 text-center sm:text-left">
@@ -160,7 +166,7 @@ const Home = () => {
             className="col-span-2 h-72 bg-gray-400 rounded-xl bg-cover bg-center"
             style={{
               backgroundImage: `url(${
-                data != null && data[4].images?.image?.url
+                data != null && data.destinations[4].images?.image?.url
               })`,
             }}
           >
@@ -171,7 +177,7 @@ const Home = () => {
             </div>
           </div>
 
-          {data?.slice(0, 4).map((dataDestination, key) => (
+          {data?.destinations.slice(0, 4).map((dataDestination, key) => (
             <div
               className="col-span-2 sm:col-span-1 h-72 bg-gray-400 rounded-xl bg-cover bg-center"
               style={{
@@ -193,7 +199,12 @@ const Home = () => {
 };
 
 Home.getLayout = function getLayout(page: React.ReactNode) {
-  return <NormalLayout pageTitle="Home">{page}</NormalLayout>;
+  return (
+    <>
+      <PageSEO />
+      <NormalLayout pageTitle="Home">{page}</NormalLayout>
+    </>
+  );
 };
 
 export default Home;
