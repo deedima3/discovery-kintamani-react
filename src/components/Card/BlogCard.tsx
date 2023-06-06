@@ -11,7 +11,10 @@ const BlogCard: FC<BlogQueryData> = ({
   shortDescription,
 }) => {
   return (
-    <div className="flex flex-col w-[315px] h-[530px] lg:w-[415px] lg:h-[630px]">
+    <div
+      className="flex flex-col w-[315px] h-[530px] lg:w-[415px] lg:h-[630px]"
+      data-aos="fade-up"
+    >
       <h5 className="mb-5 text-xl font-semibold lg:text-2xl font-poppins">
         {truncateTitle(title)}
       </h5>

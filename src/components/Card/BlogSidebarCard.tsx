@@ -5,7 +5,10 @@ import Link from "next/link";
 
 const BlogSidebarCard = ({ image, slug, title }: FeaturedBlogData) => {
   return (
-    <div className="h-20 w-full grid gap-4 grid-flow-col">
+    <Link
+      href={`/blog/${slug}`}
+      className="h-20 w-full grid gap-4 grid-flow-col"
+    >
       <div className="h-20 w-20 relative overflow-hidden rounded-brand block">
         <Image
           src={image.image.url}
@@ -23,14 +26,11 @@ const BlogSidebarCard = ({ image, slug, title }: FeaturedBlogData) => {
       </div>
       <div className="flex flex-col justify-between">
         <p className="block font-poppins text-base font-medium">{title}</p>
-        <Link
-          href={`/blog/${slug}`}
-          className="flex font-bold text-transparent from-brand-gradient-top to-brand-gradient-down bg-gradient-to-br bg-clip-text"
-        >
+        <div className="flex font-bold text-transparent from-brand-gradient-top to-brand-gradient-down bg-gradient-to-br bg-clip-text">
           <p className="block">Read Article -&gt;</p>
-        </Link>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

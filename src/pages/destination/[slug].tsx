@@ -17,6 +17,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   GetServerSideProps,
   GetServerSidePropsContext,
+  GetStaticProps,
   GetStaticPropsContext,
 } from "next";
 import dynamic from "next/dynamic";
@@ -62,7 +63,7 @@ const Slug = ({ data, slug, blogs }: PageProps) => {
         <div className="bg-white py-6 md:py-10 lg:py-14">
           <Breadcrumb breadcrumbArray={breadCrumbsData} />
         </div>
-        <div className="w-full relative">
+        <div className="w-full relative" data-aos="fade-up">
           <AspectRatio.Root ratio={20 / 9} className="overflow-hidden grid">
             <Image
               alt={data.images.alt ? data.images.alt : "image"}
@@ -122,28 +123,32 @@ const Slug = ({ data, slug, blogs }: PageProps) => {
               <DestinationMarkdown content={data.description.markdown} />
             </div>
             <div className="h-full md:block hidden" id="side-content">
-              <Sticky bottomBoundary={"#side-content"} top={32}>
+              <Sticky bottomBoundary={"#side-content"} top={180}>
                 <FeaturedBlogsSidebar blogs={blogs} />
               </Sticky>
             </div>
           </div>
           <div>
-            <h5 className="text-xl md:text-2xl lg:text-[2rem] font-bold font-quicksand">
-              Explore Map
-            </h5>
-            <p className="font-poppins text-base md:text-lg lg:text-2xl opacity-50 sm:mt-2 md:mt-4 mb-8 md:mb-[50px]">
-              Exploring Tourism Destinations with Map in Hand
-            </p>
-            <Map
-              href={
-                "http://www.google.com/maps/place/" +
-                data.coordinate.latitude +
-                "," +
-                data.coordinate.longitude
-              }
-              long={data.coordinate.longitude}
-              lat={data.coordinate.latitude}
-            />
+            <div data-aos="fade-right">
+              <h5 className="text-xl md:text-2xl lg:text-[2rem] font-bold font-quicksand">
+                Explore Map
+              </h5>
+              <p className="font-poppins text-base md:text-lg lg:text-2xl opacity-50 sm:mt-2 md:mt-4 mb-8 md:mb-[50px]">
+                Exploring Tourism Destinations with Map in Hand
+              </p>
+            </div>
+            <div data-aos="fade-up">
+              <Map
+                href={
+                  "http://www.google.com/maps/place/" +
+                  data.coordinate.latitude +
+                  "," +
+                  data.coordinate.longitude
+                }
+                long={data.coordinate.longitude}
+                lat={data.coordinate.latitude}
+              />
+            </div>
             <div className="mb-[100px] mt-8">
               <h5 className="font-poppins text-xl md:text-2xl mb-5">
                 Location
@@ -192,10 +197,17 @@ export async function getStaticPaths() {
   return { paths, fallback: "blocking" };
 }
 
-export async function getStaticProps(context: GetStaticPropsContext) {
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
   const { params } = context;
   const { blogs } = await getFirstBlogs(5);
   const res = await destinationQueries.getDestinationBySlug(params?.slug);
+  if (!res.data) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
       data: res.data,
@@ -207,5 +219,5 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     // - At most once every 10 seconds
     revalidate: 10, // In seconds
   };
-}
+};
 export default Slug;

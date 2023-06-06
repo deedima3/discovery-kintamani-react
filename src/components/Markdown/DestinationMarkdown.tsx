@@ -14,6 +14,7 @@ const DestinationMarkdown = ({ content, components }: any) => {
             {...props}
           />
         ),
+        img: (props) => <img className="rounded-brand" {...props} />,
       }}
     >
       {content}

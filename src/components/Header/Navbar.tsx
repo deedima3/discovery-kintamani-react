@@ -67,14 +67,26 @@ const Navbar = () => {
             <Link
               href={data.path}
               className={`link-hover h-16 lg:h-auto w-full lg:w-auto px-4 lg:px-0 border-b-[1px] lg:border-none border-b-gray-200 flex items-center justify-between duration-200 gap-1 ${
-                pathname == data.path && "link-active"
+                data.path === "/"
+                  ? pathname === "/"
+                    ? "link-active"
+                    : ""
+                  : pathname.includes(data.path)
+                  ? "link-active"
+                  : ""
               } flex lg:flex-col items-center`}
               key={key}
             >
               {data.name}
               <div
                 className={`hidden lg:block ${
-                  pathname == data.path && "oval-active"
+                  data.path === "/"
+                    ? pathname === "/"
+                      ? "oval-active"
+                      : ""
+                    : pathname.includes(data.path)
+                    ? "oval-active"
+                    : ""
                 }`}
               />
               <HiChevronRight

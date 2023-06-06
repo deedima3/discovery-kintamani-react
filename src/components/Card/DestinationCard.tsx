@@ -14,7 +14,7 @@ const DestinationCard: FC<DestinationQueryData> = ({
   return (
     <Link
       href={`/destination/${slug}`}
-      className="flex flex-col w-full h-auto hover:shadow-xl shadow-none p-4 rounded-[10px] transition-all duration-300"
+      className="flex flex-col w-full h-auto hover:shadow-xl shadow-none p-4 rounded-[10px] transition-all duration-400"
       data-aos="fade-up"
     >
       <AspectRatio.Root

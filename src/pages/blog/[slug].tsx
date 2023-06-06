@@ -31,6 +31,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   } else {
     data = {};
   }
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
       data,
@@ -72,7 +77,7 @@ const BlogDetail = ({ data, otherBlog }: BlogDetailApi) => {
         isBold: false,
       },
       {
-        route: `/blog/${data.slug}`,
+        route: `/blog/${data?.slug}`,
         label: `Detail`,
         isBold: true,
       },
@@ -80,6 +85,7 @@ const BlogDetail = ({ data, otherBlog }: BlogDetailApi) => {
   }, [data]);
 
   const { pathname } = useRouter();
+  const router = useRouter();
 
   return (
     <>
@@ -90,7 +96,7 @@ const BlogDetail = ({ data, otherBlog }: BlogDetailApi) => {
         </div>
         <article className="flex flex-col w-full gap-2">
           <section aria-label="blog-section" className="flex flex-col w-full">
-            <div className="w-full px-2 mx-auto max-w-screen-2xl">
+            <div className="w-full px-2 mx-auto max-w-screen-2xl mb-[40px] mt-24">
               <BlogDetailTitle
                 title={data.title}
                 subtitle={data.subtitle}
@@ -98,7 +104,7 @@ const BlogDetail = ({ data, otherBlog }: BlogDetailApi) => {
               />
             </div>
             <FullScreenBlogImage image={data.image} />
-            <div className="flex flex-col w-full max-w-screen-xl gap-2 px-2 mx-auto mt-5 text-sm break-words md:text-lg">
+            <div className="flex flex-col w-full max-w-screen-xl gap-2 px-2 mx-auto mt-[50px] text-sm break-words md:text-lg">
               <DestinationMarkdown content={data.description.markdown} />
             </div>
           </section>
@@ -112,9 +118,12 @@ const BlogDetail = ({ data, otherBlog }: BlogDetailApi) => {
           </section>
           <section
             aria-label="other-blog-post"
-            className="w-full max-w-screen-xl px-2 mx-auto mt-10"
+            className="w-full max-w-screen-xl px-2 mx-auto mt-[96px]"
           >
-            <h3 className="text-2xl font-bold md:text-4xl font-quicksand">
+            <h3
+              className="text-2xl font-bold md:text-4xl font-quicksand"
+              data-aos="fade-right"
+            >
               You may also like
             </h3>
             <div className="flex flex-wrap justify-center w-full gap-2 mt-10 lg:justify-between">
