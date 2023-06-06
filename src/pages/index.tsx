@@ -206,7 +206,7 @@ const Home = ({ destinations }: PageProps) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // const { data, isLoading } = useQuery(["destinations"], getDestinations);
   const data = await getDestinations();
   return {
