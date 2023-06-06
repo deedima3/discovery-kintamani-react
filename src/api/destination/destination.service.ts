@@ -4,6 +4,7 @@ import {
   Destination,
   DestinationResponse,
   DestinationData,
+  MapMetadataWrapper,
 } from "@/interfaces/data.interfaces";
 import {
   ApiDataResponse,
@@ -17,41 +18,44 @@ import { gql } from "graphql-request";
 
 export const getDestinations = async () => {
   const query = gql`
-  query MyQuery {
-    destinations(where: {isFeatured: true}) {
-      alwaysOpen
-      category
-      closeTime
-      coordinate {
-        latitude
-        longitude
-      }
-      id
-      images {
-        ... on Image {
-          id
-          alt
-          image {
-            width
-            url
-            height
+    query MyQuery {
+      destinations(where: { isFeatured: true }) {
+        alwaysOpen
+        category
+        closeTime
+        coordinate {
+          latitude
+          longitude
+        }
+        id
+        images {
+          ... on Image {
+            id
+            alt
+            image {
+              width
+              url
+              height
+            }
           }
         }
+        isFeatured
+        location
+        openTime
+        publishedAt
+        shortDescription
+        slug
+        stage
+        title
       }
-      isFeatured
-      location
-      openTime
-      publishedAt
-      shortDescription
-      slug
-      stage
-      title
     }
-  }
-  `
-  const { destinations } = await graphQLClient.request(query) as ApiDataResponse<DestinationQueryData[]>
-  return destinations
-}
+  `;
+  const data: ApiDataResponse<MapMetadataWrapper<DestinationData[]>> =
+    await graphQLClient.request(query);
+  return {
+    destinations: data.destinations,
+  } as unknown as MapMetadataWrapper<DestinationData[]>;
+};
 
 const getAllDestinationPaginated = async (params: PaginatedQueryParams) => {
   const query = gql`
