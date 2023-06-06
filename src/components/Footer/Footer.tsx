@@ -45,6 +45,7 @@ const Footer = () => {
           src={"/logo-white.svg"}
           width={160}
           height={100}
+          style={{height: '100%', width: '100%'}}
           alt="white-logo"
           className="opacity-30"
         />
