@@ -44,7 +44,7 @@ body {
 }
 
 .text-linear-gold {
-  background: -webkit-linear-gradient(135.93deg, #ffd809, #fd900c);
+  background: -webkit-linear-gradient(135.93deg, #ffd809 9.99%, #fd900c 66.61%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
