@@ -1,11 +1,11 @@
-import { Blog, BlogQueryData, PaginatedQueryParams } from "@/interfaces/data.interfaces"
+import { Blog, BlogQueryData, FeaturedBlogData, FeaturedBlogsWrapper, PaginatedQueryParams } from "@/interfaces/data.interfaces"
 import { ApiDataResponse, ApiNodeResponse, ApiPaginatedResponse, ApiResponse, PaginatedDataWithMeta } from "@/interfaces/graphcms.interfaces"
 import { graphQLClient } from "@/utils/query"
 import { gql } from "graphql-request"
 
 export const getAllBlog = async (search: string) => {
     const query = gql`
-    query GetAllBlogs() {
+    query GetAllBlogs($search : String) {
         blogs(where: {title_contains: $search}) {
             image {
             alt
@@ -18,11 +18,37 @@ export const getAllBlog = async (search: string) => {
             slug
             subtitle
             title
+            updatedAt
+            shortDescription
         }
         }
     `
-    const { data } = await graphQLClient.request(query, { search: search }) as ApiResponse<ApiDataResponse<Blog[]>>
-    return data.blog
+    const { blogs } = await graphQLClient.request(query, { search: search }) as ApiDataResponse<Blog[]>
+    return blogs
+}
+
+export const getAllBlogLimited = async (limit: number) => {
+    const query = gql`
+    query GetAllBlogsLimited($limit: Int) {
+            blogs(first: $limit) {
+                image {
+                alt
+                image {
+                    url
+                    width
+                    height
+                }
+                }
+                slug
+                subtitle
+                title
+                updatedAt
+                shortDescription
+            }
+        }
+    `
+    const { blogs } = await graphQLClient.request(query, { limit: limit }) as ApiDataResponse<Blog[]>
+    return blogs
 }
 
 export const getAllBlogPaginated = async (queryParams: PaginatedQueryParams) => {
@@ -38,6 +64,9 @@ export const getAllBlogPaginated = async (queryParams: PaginatedQueryParams) => 
                         hasPreviousPage
                         pageSize
                     }
+                    aggregate {
+                      count
+                    }
                     edges {
                     node {
                         slug
@@ -48,10 +77,11 @@ export const getAllBlogPaginated = async (queryParams: PaginatedQueryParams) => 
                             image {
                                 height
                                 width
-                                url
+                                url(transformation: {image: {resize: {width: 500, height: 500}}})
                             }
                         }
                         shortDescription
+                        updatedAt
                     }
                     }
                 }
@@ -69,7 +99,7 @@ export const getAllBlogPaginated = async (queryParams: PaginatedQueryParams) => 
 
 export const getBlogByID = async (slug: string) => {
     const query = gql`
-    query GetBlogByID {
+    query GetBlogByID($slug : String) {
         blog(where: {slug: $slug}) {
             description {
             html
@@ -85,9 +115,47 @@ export const getBlogByID = async (slug: string) => {
             slug
             title
             subtitle
+            updatedAt
         }
         }
     `
-    const data = await graphQLClient.request(query, { slug: slug }) as ApiResponse<ApiDataResponse<Blog>>
-    console.log(data)
+    const { blog } = await graphQLClient.request(query, { slug: slug }) as ApiDataResponse<Blog>
+    return blog
 }
+
+export const getAllBlogSlug = async () => {
+    const query = gql`
+    query GetAllBlogs {
+            blogs{
+                slug
+            }
+        }
+    `
+    const { blogs } = await graphQLClient.request(query) as ApiDataResponse<{ slug: string }[]>
+    return blogs
+}
+
+export const getFirstBlogs = async (limit: number) => {
+  const query = gql`
+    query MyQuery($limit: Int) {
+      blogs(first: $limit) {
+        slug
+        title
+        image {
+          alt
+          image {
+            width
+            url
+            height
+          }
+        }
+      }
+    }
+  `;
+  const data = (await graphQLClient.request(query, {
+    limit: limit,
+  })) as ApiDataResponse<FeaturedBlogsWrapper<FeaturedBlogData>[]>;
+  return {
+    blogs: data.blogs,
+  } as unknown as FeaturedBlogsWrapper<FeaturedBlogData[]>;
+};

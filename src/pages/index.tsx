@@ -37,14 +37,15 @@ const Home = () => {
           </p>
         </div>
         <div className="h-full w-full sm:w-1/2 flex sm:items-center justify-end">
-          <div className="w-full sm:w-[650px] h-full sm:h-[300px] md:h-[400px] relative">
+          <div className="w-full sm:w-[650px] h-full sm:h-[300px] md:h-[400px]">
             <Image
-              src="https://images.unsplash.com/photo-1551212040-47117df00603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2874&q=80"
+              src="https://images.unsplash.com/photo-1551212040-47117df00603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MTR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
               alt={"Headers"}
-              layout="fill"
-              objectFit="cover"
-              loading="lazy"
+              width={300}
+              height={300}
+              style={{width: '100%', height: '100%'}}
               className="sm:rounded-l-3xl xl:rounded-3xl bg-stone-300"
+              priority
             />
           </div>
         </div>
@@ -85,11 +86,12 @@ const Home = () => {
         >
           {data?.map((destinationData, key) => (
             <SwiperSlide className="flex flex-col" key={key}>
-              <div className="w-full h-72 relative mb-2">
+              <div className="w-full h-72 mb-2">
                 <Image
                   src={destinationData?.images?.image?.url}
-                  layout="fill"
-                  objectFit="cover"
+                  width={0}
+                  height={0}
+                  style={{height: '100%', width: '100%'}}
                   alt={destinationData?.images?.alt}
                   className="rounded-2xl bg-stone-300"
                 />{" "}

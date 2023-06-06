@@ -7,6 +7,7 @@ export interface Blog {
   title: string;
   subtitle: string;
   shortDescription: string;
+  updatedAt: string;
 }
 
 export interface BlogQueryData {
@@ -30,16 +31,24 @@ export interface DestinationQueryData {
   shortDescription: string;
 }
 
-interface DestinationImages {
+export interface DestinationImages {
   image: GraphCMSDestinationImage;
   alt: string;
 }
 
-interface GraphCMSDestinationImage {
+export interface GraphCMSDestinationImage {
   height: number;
   size: number;
   url: string;
   width: number;
+}
+
+export interface Destination {
+  slug: string;
+}
+
+export interface DestinationResponse<Response> {
+  destination: Response;
 }
 
 // export interface Destination {
@@ -50,3 +59,55 @@ interface GraphCMSDestinationImage {
 //   subtitle: string;
 //   shortDescription: string;
 // }
+
+export interface DestinationData {
+  alwaysOpen: boolean;
+  closeTime: number;
+  coordinate: CoordinateLngLat;
+  description: MarkdownOnly;
+  images: GraphCMSImage;
+  location: string;
+  openTime: number;
+  title: string;
+  category: string;
+}
+
+export interface MarkdownOnly {
+  markdown: string;
+}
+
+export interface CoordinateLngLat {
+  latitude: number;
+  longitude: number;
+}
+
+export interface CategoryLinearData {
+  [key: string]: string;
+  tourism: string;
+  religious: string;
+  history: string;
+  fnb: string;
+}
+
+export interface FeaturedBlogData {
+  slug: string;
+  title: string;
+  image: GraphCMSImage;
+}
+
+export interface FeaturedBlogsWrapper<T> {
+  blogs: T;
+}
+
+export interface MapMetadataWrapper<T> {
+  destinations: T;
+}
+
+export interface MapMetadata {
+  title: string;
+  shortDescription: string;
+  location: string;
+  category: string;
+  coordinate: CoordinateLngLat;
+  images: GraphCMSImage;
+}

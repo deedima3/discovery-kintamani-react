@@ -20,7 +20,7 @@ const Navbar = () => {
     <div className="w-full h-36 fixed z-50 top-0 bg-white border-b-2 border-b-gray-200">
       <div className="h-full mx-auto px-4 max-w-screen-2xl flex justify-between items-center">
         <Link href={"/"} className="h-20 flex items-center gap-3">
-          <Image src="/logo-colored.svg" width={35} height={30} alt="logo" />
+          <Image src="/logo-colored.svg" width={35} height={30} style={{width:'auto', height:'auto'}} alt="logo" />
           <div className="text-slate-900 font-semibold leading-7 text-2xl">
             Kintamani <br /> Discovery
           </div>

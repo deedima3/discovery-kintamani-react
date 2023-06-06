@@ -19,16 +19,20 @@ const DestinationCard: FC<DestinationQueryData> = ({
       >
         <Image
           src={images.image.url}
-          alt={images.alt}
+          alt={images.alt ? images.alt : "image"}
           className="object-cover w-full"
           fill
+          sizes="100%"
+          priority
+          placeholder="blur"
+          blurDataURL="https://placehold.co/600x400.png"
           // width={images.image.width}
           // height={images.image.height}
           // placeholder="blur"
           // blurDataURL=""
         />
       </AspectRatio.Root>
-      <h5 className="text-[28px] font-semibold font-poppins">{title}</h5>
+      <h5 className="text-[28px] font-semibold font-poppins mt-5">{title}</h5>
 
       <p className="w-full mt-2 text-black font-poppins text-md opacity-40">
         {truncateDescription(shortDescription)}
