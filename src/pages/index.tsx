@@ -45,7 +45,7 @@ const Home = () => {
         <div className="h-full w-full sm:w-1/2 flex sm:items-center justify-end">
           <div className="w-full sm:w-[650px] h-full sm:h-[300px] md:h-[400px]">
             <Image
-              src={data.destinations[7].images.image.url || ''}
+              src={data?.destinations[7].images.image.url || ''}
               width={data?.destinations[7].images?.image?.width}
               height={data?.destinations[7].images?.image?.height}
               style={{height: '100%', width: '100%', objectFit: 'cover'}}
