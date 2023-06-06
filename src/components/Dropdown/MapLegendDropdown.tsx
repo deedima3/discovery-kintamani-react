@@ -25,12 +25,12 @@ const MapLegendDropdown = (props: Props) => {
   return (
     <div className="z-50 absolute top-0 left-0">
       <button
-        className="w-fit bg-black flex flex-row space-x-1 px-3 py-2 rounded-[4px] items-center justify-center hover:cursor-pointer"
+        className="w-fit bg-black flex flex-row space-x-1 px-3 py-1 lg:py-2 rounded-[4px] items-center justify-center hover:cursor-pointer"
         onClick={(e) => {
           props.setIsDropdownOpen(!props.isOpen);
         }}
       >
-        <p className="text-linear-gold text-sm font-bold whitespace-nowrap font-poppins">
+        <p className="text-linear-gold md:text-sm font-bold whitespace-nowrap font-poppins text-[10px]">
           Map Legend
         </p>
         <ArrowDown
@@ -47,10 +47,10 @@ const MapLegendDropdown = (props: Props) => {
         {mapLegendData.map(({ color, text }, idx) => (
           <div
             key={idx}
-            className="flex flex-row space-x-4 p-4 items-center hover:bg-slate-400 transition-all duration-300 hover:cursor-pointer group"
+            className="flex flex-row space-x-4 p-2 lg:p-4 items-center hover:bg-slate-400 transition-all duration-300 hover:cursor-pointer group"
           >
             <div className={`w-4 h-4 rounded-full bg-linear-${color}`}></div>
-            <p className="text-black whitespace-nowrap group-hover:text-white">
+            <p className="text-black whitespace-nowrap group-hover:text-white text-[10px] lg:text-sm">
               {text}
             </p>
           </div>
