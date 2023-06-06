@@ -14,10 +14,6 @@ const UnborderedLayout: FC<UnborderedLayoutProps> = ({
 }) => {
   return (
     <>
-      <Head>
-        <link rel="shortcut icon" href="/logo-colored.svg" sizes="any" />
-        <title>{pageTitle}</title>
-      </Head>
       <div className="w-full">{children}</div>
     </>
   );

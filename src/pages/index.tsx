@@ -16,6 +16,7 @@ import { GiBinoculars, GiGreekTemple, GiHourglass } from "react-icons/gi";
 import { useQuery } from "@tanstack/react-query";
 import { getDestinations } from "@/api/destination/destination.service";
 import dynamic from "next/dynamic";
+import { PageSEO } from "@/components/SEO/CommonSEO";
 
 const Map = dynamic(() => import("@/components/Map/oddysey"), { ssr: false })
 
@@ -193,7 +194,7 @@ const Home = () => {
 };
 
 Home.getLayout = function getLayout(page: React.ReactNode) {
-  return <NormalLayout pageTitle="Home">{page}</NormalLayout>;
+  return <><PageSEO/><NormalLayout pageTitle="Home">{page}</NormalLayout></>
 };
 
 export default Home;
