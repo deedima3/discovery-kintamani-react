@@ -17,6 +17,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getDestinations } from "@/api/destination/destination.service";
 import dynamic from "next/dynamic";
 import { PageSEO } from "@/components/SEO/CommonSEO";
+import { CATEGORY_VALUE } from "@/utils/constant";
 
 const Map = dynamic(() => import("@/components/Map/oddysey"), { ssr: false })
 
@@ -90,9 +91,9 @@ const Home = () => {
               <div className="w-full h-72 mb-2">
                 <Image
                   src={destinationData?.images?.image?.url}
-                  width={0}
-                  height={0}
-                  style={{height: '100%', width: '100%'}}
+                  width={destinationData?.images?.image?.width}
+                  height={destinationData?.images?.image?.height}
+                  style={{height: '100%', width: '100%', objectFit: 'cover'}}
                   alt={destinationData?.images?.alt}
                   className="rounded-2xl bg-stone-300"
                 />{" "}
@@ -112,7 +113,7 @@ const Home = () => {
                       <GiHourglass className="bg-gradient-to-tr from-purple-400 to-red-400 rounded-xl p-1 text-2xl text-white " />
                     )
                   )}
-                  {destinationData?.category}
+                  {CATEGORY_VALUE[destinationData?.category]}
                 </div>
               </div>
               <h2 className=" text-2xl font-bold font-quicksand">
