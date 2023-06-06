@@ -123,3 +123,24 @@ body {
 .leaflet-bottom {
   z-index: 0 !important;
 }
+
+.link-active {
+  @apply font-normal;
+  background: -webkit-linear-gradient(310deg, #FFD809, #FD900C, #FD900C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.link-hover:hover{
+  @apply font-normal;
+  background: -webkit-linear-gradient(310deg, #FFD809, #FD900C, #FD900C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.oval-active {
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  background: -webkit-linear-gradient(310deg, #FFD809, #FD900C);
+}
