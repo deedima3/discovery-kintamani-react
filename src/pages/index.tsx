@@ -42,18 +42,10 @@ const Home = () => {
         <div className="flex justify-end w-full h-full sm:w-1/2 sm:items-center">
           <div className="w-full sm:w-[650px] h-full sm:h-[300px] md:h-[400px]">
             <Image
-<<<<<<< HEAD
-              src={data?.destinations[7].images.image.url}
+              src={data?.destinations[7].images.image.url || ''}
               width={data?.destinations[7].images?.image?.width}
               height={data?.destinations[7].images?.image?.height}
               style={{ height: "100%", width: "100%", objectFit: "cover" }}
-=======
-              src="https://images.unsplash.com/photo-1551212040-47117df00603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MTR8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
-              alt={"Headers"}
-              width={300}
-              height={300}
-              style={{ width: "100%", height: "100%" }}
->>>>>>> 8a2ad29 (fix/hotfix-index)
               className="sm:rounded-l-3xl xl:rounded-3xl bg-stone-300"
               alt={"Headers"}
               priority
@@ -100,15 +92,9 @@ const Home = () => {
               <div className="w-full mb-2 h-72">
                 <Image
                   src={destinationData?.images?.image?.url}
-<<<<<<< HEAD
                   width={destinationData?.images?.image?.width}
                   height={destinationData?.images?.image?.height}
                   style={{ height: "100%", width: "100%", objectFit: "cover" }}
-=======
-                  width={0}
-                  height={0}
-                  style={{ height: "100%", width: "100%" }}
->>>>>>> 8a2ad29 (fix/hotfix-index)
                   alt={destinationData?.images?.alt}
                   className="rounded-2xl bg-stone-300"
                 />{" "}
