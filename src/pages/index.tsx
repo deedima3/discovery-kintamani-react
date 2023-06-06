@@ -6,13 +6,26 @@ import { FreeMode } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { HiOutlineGlobeAmericas, HiOutlineCamera } from "react-icons/hi2";
+import {
+  HiOutlineGlobeAmericas,
+  HiOutlineCamera,
+  HiOutlineMap,
+} from "react-icons/hi2";
+import { GiBinoculars, GiGreekTemple, GiHourglass } from "react-icons/gi";
+
+import { useQuery } from "@tanstack/react-query";
+import { getDestinations } from "@/api/destination/destination.service";
 
 const Home = () => {
+  const { data, error, isLoading } = useQuery(
+    ["destinations"],
+    getDestinations
+  );
+
   return (
     <div className="bg-white text-stone-800">
-      <section className="h-screen w-full pt-36 flex flex-col md:flex-row gap-10 md:gap-0">
-        <div className="w-full md:w-1/2 flex flex-col justify-center gap-5">
+      <section className="h-screen w-full pt-36 lg:pt-0 flex flex-col sm:flex-row gap-10 md:gap-0">
+        <div className="w-full sm:w-1/2 flex flex-col justify-center gap-5">
           <h1 className="text-5xl text-stone-800 font-quicksand font-semibold leading-[58px]">
             Exploring Bali's <br /> Highland Treasures
           </h1>
@@ -20,8 +33,17 @@ const Home = () => {
             Discover the Enchanting Secrets of Kintamani
           </p>
         </div>
-        <div className="h-full w-full md:w-1/2 flex md:items-center justify-end">
-          <div className="w-full sm:w-[600px] h-full sm:h-[300px] md:h-[340px] sm:rounded-l-3xl md:rounded-3xl bg-stone-300" />
+        <div className="h-full w-full sm:w-1/2 flex sm:items-center justify-end">
+          <div className="w-full sm:w-[650px] h-full sm:h-[300px] lg:h-[400px] relative">
+            <Image
+              src="https://images.unsplash.com/photo-1551212040-47117df00603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2874&q=80"
+              alt={"Headers"}
+              layout="fill"
+              objectFit="cover"
+              loading="lazy"
+              className="sm:rounded-l-3xl xl:rounded-3xl bg-stone-300"
+            />
+          </div>
         </div>
 
         <div className="arrow">
@@ -58,93 +80,46 @@ const Home = () => {
           modules={[FreeMode]}
           className="mySwiper w-full cursor-pointer"
         >
-          <SwiperSlide className="flex flex-col">
-            <div className="w-full h-64 rounded-2xl bg-stone-300" />{" "}
-            <div>
-              <span>tag 1</span> <span>tag 2</span>
-            </div>{" "}
-            <h2 className=" text-2xl font-semibold font-quicksand">
-              Name of Place
-            </h2>
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-col">
-            <div className="w-full h-64 rounded-2xl bg-stone-300" />{" "}
-            <div>
-              <span>tag 1</span> <span>tag 2</span>
-            </div>{" "}
-            <h2 className=" text-2xl font-semibold font-quicksand">
-              Name of Place
-            </h2>
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-col">
-            <div className="w-full h-64 rounded-2xl bg-stone-300" />{" "}
-            <div>
-              <span>tag 1</span> <span>tag 2</span>
-            </div>{" "}
-            <h2 className=" text-2xl font-semibold font-quicksand">
-              Name of Place
-            </h2>
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-col">
-            <div className="w-full h-64 rounded-2xl bg-stone-300" />{" "}
-            <div>
-              <span>tag 1</span> <span>tag 2</span>
-            </div>{" "}
-            <h2 className=" text-2xl font-semibold font-quicksand">
-              Name of Place
-            </h2>
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-col">
-            <div className="w-full h-64 rounded-2xl bg-stone-300" />{" "}
-            <div>
-              <span>tag 1</span> <span>tag 2</span>
-            </div>{" "}
-            <h2 className=" text-2xl font-semibold font-quicksand">
-              Name of Place
-            </h2>
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-col">
-            <div className="w-full h-64 rounded-2xl bg-stone-300" />{" "}
-            <div>
-              <span>tag 1</span> <span>tag 2</span>
-            </div>{" "}
-            <h2 className=" text-2xl font-semibold font-quicksand">
-              Name of Place
-            </h2>
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-col">
-            <div className="w-full h-64 rounded-2xl bg-stone-300" />{" "}
-            <div>
-              <span>tag 1</span> <span>tag 2</span>
-            </div>{" "}
-            <h2 className=" text-2xl font-semibold font-quicksand">
-              Name of Place
-            </h2>
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-col">
-            <div className="w-full h-64 rounded-2xl bg-stone-300" />{" "}
-            <div>
-              <span>tag 1</span> <span>tag 2</span>
-            </div>{" "}
-            <h2 className=" text-2xl font-semibold font-quicksand">
-              Name of Place
-            </h2>
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-col">
-            <div className="w-full h-64 rounded-2xl bg-stone-300" />{" "}
-            <div>
-              <span>tag 1</span> <span>tag 2</span>
-            </div>{" "}
-            <h2 className=" text-2xl font-semibold font-quicksand">
-              Name of Place
-            </h2>
-          </SwiperSlide>
+          {data?.map((destinationData, key) => (
+            <SwiperSlide className="flex flex-col" key={key}>
+              <div className="w-full h-72 relative mb-2">
+                <Image
+                  src={destinationData?.images?.image?.url}
+                  layout="fill"
+                  objectFit="cover"
+                  alt={destinationData?.images?.alt}
+                  className="rounded-2xl bg-stone-300"
+                />{" "}
+              </div>
+              <div className="flex gap-3">
+                <div className="flex gap-2">
+                  <HiOutlineMap className="bg-black rounded-3xl text-white p-1 text-2xl" />{" "}
+                  {destinationData?.location}
+                </div>{" "}
+                <div className="flex gap-2">
+                  {destinationData?.category == "religious" ? (
+                    <GiGreekTemple className=" bg-gradient-to-tl from-blue-800 to-purple-500 rounded-xl p-1 text-2xl text-white " />
+                  ) : destinationData.category == "tourism" ? (
+                    <GiBinoculars className="bg-gradient-to-tr from-blue-700 to-sky-400 rounded-xl p-1 text-2xl text-white " />
+                  ) : (
+                    destinationData.category == "history" && (
+                      <GiHourglass className="bg-gradient-to-tr from-purple-400 to-red-400 rounded-xl p-1 text-2xl text-white " />
+                    )
+                  )}{" "}
+                  {destinationData?.category}
+                </div>
+              </div>{" "}
+              <h2 className=" text-2xl font-bold font-quicksand">
+                {destinationData?.title}
+              </h2>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </section>
 
       <section className="w-full flex flex-col sm:flex-row items-center mt-20 gap-6 sm:gap-0">
-        <div className="w-full sm:w-1/2 h-[45vh] sm:h-[509px] bg-stone-300 sm:rounded-2xl" />
-        <div className="sm:pl-32 sm:w-1/2 text-center sm:text-left">
+        <div className="w-full sm:w-1/2 h-[45vh] sm:h-[509px] bg-stone-300 sm:rounded-r-2xl lg:rounded-2xl" />
+        <div className="sm:pl-20 lg:pl-32 sm:w-1/2 text-center sm:text-left">
           <h1 className="w-full text-3xl font-quicksand font-bold mb-5">
             Interactive Map Odyssey
           </h1>
@@ -171,51 +146,37 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-4 sm:grid-cols-3 gap-4">
-          <div className="col-span-2 h-40 bg-gray-400 rounded-xl">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div
+            className="col-span-2 h-72 bg-gray-400 rounded-xl bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${
+                data != null && data[4].images?.image?.url
+              })`,
+            }}
+          >
             <div className="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl p-5 flex items-end text-white font-light text-sm">
-              {" "}
               <div className="flex items-center gap-2">
-                <HiOutlineCamera className="text-base" /> Photo by Kelvin Ananta
-              </div>{" "}
+                <HiOutlineCamera className="text-base" /> Photo by Admin
+              </div>
             </div>
           </div>
 
-          <div className="col-span-2 sm:col-span-1 h-40 bg-gray-400 rounded-xl">
-            <div className="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl p-5 flex items-end text-white font-light text-sm">
-              {" "}
-              <div className="flex items-center gap-2">
-                <HiOutlineCamera className="text-base" /> Photo by Kelvin Ananta
-              </div>{" "}
+          {data?.slice(0, 4).map((dataDestination, key) => (
+            <div
+              className="col-span-2 sm:col-span-1 h-72 bg-gray-400 rounded-xl bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${dataDestination?.images?.image?.url})`,
+              }}
+              key={key}
+            >
+              <div className="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl p-5 flex items-end text-white font-light text-sm ">
+                <div className="flex items-center gap-2">
+                  <HiOutlineCamera className="text-base" /> Photo by Admin
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div className="col-span-4 sm:col-span-1 h-40 bg-gray-400 rounded-xl">
-            <div className="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl p-5 flex items-end text-white font-light text-sm">
-              {" "}
-              <div className="flex items-center gap-2">
-                <HiOutlineCamera className="text-base" /> Photo by Kelvin Ananta
-              </div>{" "}
-            </div>
-          </div>
-
-          <div className="col-span-2 sm:col-span-1 h-40 bg-gray-400 rounded-xl">
-            <div className="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl p-5 flex items-end text-white font-light text-sm">
-              {" "}
-              <div className="flex items-center gap-2">
-                <HiOutlineCamera className="text-base" /> Photo by Kelvin Ananta
-              </div>{" "}
-            </div>
-          </div>
-
-          <div className="col-span-2 sm:col-span-1 h-40 bg-gray-400 rounded-xl">
-            <div className="w-full h-full bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl p-5 flex items-end text-white font-light text-sm">
-              {" "}
-              <div className="flex items-center gap-2">
-                <HiOutlineCamera className="text-base" /> Photo by Kelvin Ananta
-              </div>{" "}
-            </div>
-          </div>
+          ))}
         </div>
       </section>
     </div>
