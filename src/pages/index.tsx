@@ -18,8 +18,9 @@ import { getDestinations } from "@/api/destination/destination.service";
 import dynamic from "next/dynamic";
 import { PageSEO } from "@/components/SEO/CommonSEO";
 import { CATEGORY_VALUE } from "@/utils/constant";
+import { DestinationData } from "@/interfaces/data.interfaces";
 
-const Map = dynamic(() => import("@/components/Map/oddysey"), { ssr: false })
+const Map = dynamic(() => import("@/components/Map/oddysey"), { ssr: false });
 
 const Home = () => {
   const { data, error, isLoading } = useQuery(
@@ -45,7 +46,7 @@ const Home = () => {
               alt={"Headers"}
               width={300}
               height={300}
-              style={{width: '100%', height: '100%'}}
+              style={{ width: "100%", height: "100%" }}
               className="sm:rounded-l-3xl xl:rounded-3xl bg-stone-300"
               priority
             />
@@ -86,14 +87,14 @@ const Home = () => {
           modules={[FreeMode]}
           className="mySwiper w-full cursor-pointer"
         >
-          {data?.map((destinationData, key) => (
+          {data?.destinations.map((destinationData: DestinationData, key) => (
             <SwiperSlide className="flex flex-col" key={key}>
               <div className="w-full h-72 mb-2">
                 <Image
                   src={destinationData?.images?.image?.url}
                   width={destinationData?.images?.image?.width}
                   height={destinationData?.images?.image?.height}
-                  style={{height: '100%', width: '100%', objectFit: 'cover'}}
+                  style={{ height: "100%", width: "100%", objectFit: "cover" }}
                   alt={destinationData?.images?.alt}
                   className="rounded-2xl bg-stone-300"
                 />{" "}
@@ -127,7 +128,7 @@ const Home = () => {
       <section className="w-full flex flex-col sm:flex-row items-center mt-20 gap-6 sm:gap-0">
         <div className="w-full sm:w-1/2 h-[45vh] sm:h-[509px]">
           <div className="w-full sm:w-11/12 h-full bg-stone-300 sm:rounded-r-2xl lg:rounded-2xl overflow-hidden">
-            <Map/>
+            <Map />
           </div>
         </div>
         <div className="sm:pl-20 lg:pl-32 sm:w-1/2 text-center sm:text-left">
@@ -162,7 +163,7 @@ const Home = () => {
             className="col-span-2 h-72 bg-gray-400 rounded-xl bg-cover bg-center"
             style={{
               backgroundImage: `url(${
-                data != null && data[4].images?.image?.url
+                data != null && data.destinations[4].images?.image?.url
               })`,
             }}
           >
@@ -173,7 +174,7 @@ const Home = () => {
             </div>
           </div>
 
-          {data?.slice(0, 4).map((dataDestination, key) => (
+          {data?.destinations.slice(0, 4).map((dataDestination, key) => (
             <div
               className="col-span-2 sm:col-span-1 h-72 bg-gray-400 rounded-xl bg-cover bg-center"
               style={{
@@ -195,7 +196,12 @@ const Home = () => {
 };
 
 Home.getLayout = function getLayout(page: React.ReactNode) {
-  return <><PageSEO/><NormalLayout pageTitle="Home">{page}</NormalLayout></>
+  return (
+    <>
+      <PageSEO />
+      <NormalLayout pageTitle="Home">{page}</NormalLayout>
+    </>
+  );
 };
 
 export default Home;
